@@ -1,17 +1,53 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path": "pages/index/index",
+			"path": "pages/faxian/faxian",
 			"style": {
-				"navigationBarTitleText": "uni-app"
+				"navigationBarTitleText": "发现"
+			}
+		},
+		{
+			"path": "pages/ditu/ditu",
+			"style": {
+				"navigationBarTitleText": "发现"
+			}
+		},
+		{
+			"path": "pages/wode/wode",
+			"style": {
+				"navigationBarTitleText": "我的"
 			}
 		}
 	],
 	"globalStyle": {
-		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "小羊试驾",
+		"navigationBarBackgroundColor": "#47DFFF",
+		"backgroundColor": "#47DFFF"
 	},
-	"uniIdRouter": {}
+	"uniIdRouter": {},
+	"tabBar": {
+		"selectedColor": "#47DFFF",
+		"color": "#323232",
+		"list": [{
+				"text": "发现",
+				"pagePath": "pages/faxian/faxian",
+				"iconPath": "static/icon/ic-faxian.png",
+				"selectedIconPath": "static/icon/ic-faxian-active.png"
+			},
+			{
+				"text": "地图",
+				"pagePath": "pages/ditu/ditu",
+				"iconPath": "static/icon/ic-ditu.png",
+				"selectedIconPath": "static/icon/ic-ditu-active.png"
+			},
+			{
+				"text": "我的",
+				"pagePath": "pages/wode/wode",
+				"iconPath": "static/icon/ic-wode.png",
+				"selectedIconPath": "static/icon/ic-wode-active.png"
+			}
+
+		]
+	}
 }

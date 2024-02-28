@@ -1,0 +1,38 @@
+{
+  "pages": [
+    "pages/faxian/faxian",
+    "pages/ditu/ditu",
+    "pages/wode/wode"
+  ],
+  "window": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "小羊试驾",
+    "navigationBarBackgroundColor": "#47DFFF",
+    "backgroundColor": "#47DFFF"
+  },
+  "tabBar": {
+    "selectedColor": "#47DFFF",
+    "color": "#323232",
+    "list": [
+      {
+        "text": "发现",
+        "pagePath": "pages/faxian/faxian",
+        "iconPath": "static/icon/ic-faxian.png",
+        "selectedIconPath": "static/icon/ic-faxian-active.png"
+      },
+      {
+        "text": "地图",
+        "pagePath": "pages/ditu/ditu",
+        "iconPath": "static/icon/ic-ditu.png",
+        "selectedIconPath": "static/icon/ic-ditu-active.png"
+      },
+      {
+        "text": "我的",
+        "pagePath": "pages/wode/wode",
+        "iconPath": "static/icon/ic-wode.png",
+        "selectedIconPath": "static/icon/ic-wode-active.png"
+      }
+    ]
+  },
+  "usingComponents": {}
+}
