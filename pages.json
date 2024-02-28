@@ -3,18 +3,24 @@
 		{
 			"path": "pages/faxian/faxian",
 			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTextStyle": "white",
 				"navigationBarTitleText": "发现"
 			}
 		},
 		{
 			"path": "pages/ditu/ditu",
 			"style": {
-				"navigationBarTitleText": "发现"
+				"navigationStyle": "custom",
+				"navigationBarTextStyle": "white",
+				"navigationBarTitleText": "地图"
 			}
 		},
 		{
 			"path": "pages/wode/wode",
 			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTextStyle": "white",
 				"navigationBarTitleText": "我的"
 			}
 		}

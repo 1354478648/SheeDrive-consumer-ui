@@ -1,4 +1,6 @@
 {
-  "navigationBarTitleText": "发现",
+  "navigationStyle": "custom",
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "地图",
   "usingComponents": {}
 }
