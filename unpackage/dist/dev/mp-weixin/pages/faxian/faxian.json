@@ -2,7 +2,5 @@
   "navigationStyle": "custom",
   "navigationBarTextStyle": "white",
   "navigationBarTitleText": "发现",
-  "usingComponents": {
-    "custom-swiper": "./components/CustomSwiper"
-  }
+  "usingComponents": {}
 }

@@ -20,12 +20,11 @@ const httpInterceptor = {
 			'source-client': 'miniapp',
 			...options.header,
 		}
-		// 4. 添加 token 请求头标识
-		const infoStore = useInfoStore()
-		const token = infoStore.info.token
-		if (token) {
-			options.header.Authorization = token
-		}
+		// // 4. 添加 token 请求头标识
+		// const infoStore = useInfoStore()
+		// if (infoStore.info) {
+		// 	options.header.Authorization = infoStore.info.token
+		// }
 	},
 }
 
@@ -43,8 +42,8 @@ export const http = (options) => {
 			success(result) {
 				// 判断业务状态码
 				if (result.data.code === 0) {
-					resolve(res.data)
-				} else if (res.statusCode === 403) {
+					resolve(result.data)
+				} else if (result.statusCode === 403) {
 					// 403错误
 					const infoStore = useInfoStore()
 					infoStore.clearInfo()

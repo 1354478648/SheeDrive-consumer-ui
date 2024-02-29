@@ -23,17 +23,99 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-page {
-  background-color: #f7f7f7;
-  height: 100%;
+.view-port.data-v-d5906933 {
+  position: relative;
+  height: 100vh;
+  /* 设置视口高度为屏幕高度 */
   overflow: hidden;
+  /* 隐藏超出部分 */
 }
-.viewport {
+.view-port .swiper-container.data-v-d5906933 {
+  position: relative;
   height: 100%;
+  /* 使轮播图容器占满视口高度 */
+}
+.view-port .carousel.data-v-d5906933 {
+  height: 100%;
+  /* 使轮播图占满轮播图容器 */
+  position: relative;
+}
+.view-port .carousel .swiper.data-v-d5906933 {
+  height: 100%;
+  /* 使 swiper 元素占满轮播图 */
+}
+.view-port .carousel .swiper .image.data-v-d5906933 {
+  width: 100%;
+  height: 100%;
+}
+.view-port .carousel .indicator.data-v-d5906933 {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 16rpx;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
 }
-.scroll-view {
-  flex: 1;
-  overflow: hidden;
+.view-port .carousel .indicator .dot.data-v-d5906933 {
+  width: 30rpx;
+  height: 6rpx;
+  margin: 0 8rpx;
+  border-radius: 6rpx;
+  background-color: rgba(255, 255, 255, 0.4);
+}
+.view-port .carousel .indicator .active.data-v-d5906933 {
+  background-color: #fff;
+}
+.view-port .title.data-v-d5906933 {
+  position: absolute;
+  top: 200rpx;
+  /* 调整标题位置 */
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 64rpx;
+  color: #ffffff;
+  text-align: center;
+  /* 居中文字 */
+}
+.view-port .descide-info.data-v-d5906933 {
+  position: absolute;
+  top: 400rpx;
+  left: 50%;
+  width: 90%;
+  /* 设置标题宽度 */
+  max-width: 800rpx;
+  /* 设置最大宽度，避免在较大屏幕上过宽 */
+  transform: translateX(-50%);
+  font-size: 40rpx;
+  color: #ffffff;
+  display: flex;
+  /* 使用 Flex 布局 */
+  justify-content: center;
+  /* 水平居中 */
+}
+.view-port .book-btn.data-v-d5906933 {
+  position: absolute;
+  bottom: 10vw;
+  /* 调整按钮位置 */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  width: 600rpx;
+  /* 设置按钮宽度 */
+  height: 100rpx;
+  /* 设置按钮高度 */
+  border: 2px solid #ffffff;
+  /* 设置边框样式 */
+  background-color: transparent;
+  /* 设置背景透明 */
+  font-size: 32rpx;
+  color: #ffffff;
+  text-align: center;
+  display: flex;
+  /* 使用 Flex 布局 */
+  justify-content: center;
+  /* 水平居中 */
+  align-items: center;
+  /* 垂直居中 */
+  cursor: pointer;
 }

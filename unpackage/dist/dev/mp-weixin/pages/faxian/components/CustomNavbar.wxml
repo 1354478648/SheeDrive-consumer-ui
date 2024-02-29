@@ -1,1 +1,0 @@
-<view class="navbar" style="{{'padding-top:' + c}}"><view class="logo"><image class="logo-image" src="{{a}}"></image><text class="logo-text">驾驭未来，畅享自由！</text></view><view class="search"><uni-icons wx:if="{{b}}" u-i="078695e4-0" bind:__l="__l" u-p="{{b}}"></uni-icons><text style="margin-left:10rpx">搜索车辆</text></view></view>

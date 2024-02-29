@@ -1,13 +1,11 @@
 <script setup>
-
+import CustomNavbar from '@/pages/components/CustomNavbar.vue';
 </script>
 
 <template>
-	<view>
-		地图
-	</view>
+    <view>
+        <CustomNavbar />
+    </view>
 </template>
 
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>
