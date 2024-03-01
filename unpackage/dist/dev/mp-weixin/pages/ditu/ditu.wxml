@@ -1,1 +1,1 @@
-<view><custom-navbar u-i="a1f1d6c2-0" bind:__l="__l"/></view>
+<view><custom-navbar u-i="a1f1d6c2-0" bind:__l="__l"/><view class="view-port"><map longitude="{{a}}" latitude="{{b}}" markers="{{c}}" class="map"></map></view></view>

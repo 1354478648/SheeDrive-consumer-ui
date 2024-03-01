@@ -23,6 +23,14 @@
 				"navigationBarTextStyle": "white",
 				"navigationBarTitleText": "我的"
 			}
+		},
+		{
+			"path": "pages/yuyue/yuyue",
+			"style": {
+				"navigationBarBackgroundColor":"#fff",
+				"navigationBarTextStyle": "black",
+				"navigationBarTitleText": "预约试驾"
+			}
 		}
 	],
 	"globalStyle": {

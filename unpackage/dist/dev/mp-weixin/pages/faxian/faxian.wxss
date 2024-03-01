@@ -76,6 +76,8 @@
   color: #ffffff;
   text-align: center;
   /* 居中文字 */
+  font-family: SimHei;
+  font-weight: lighter;
 }
 .view-port .descide-info.data-v-d5906933 {
   position: absolute;
@@ -92,6 +94,7 @@
   /* 使用 Flex 布局 */
   justify-content: center;
   /* 水平居中 */
+  font-weight: lighter;
 }
 .view-port .book-btn.data-v-d5906933 {
   position: absolute;
@@ -118,4 +121,5 @@
   align-items: center;
   /* 垂直居中 */
   cursor: pointer;
+  font-weight: lighter;
 }

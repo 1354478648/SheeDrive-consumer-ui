@@ -15,6 +15,12 @@ const activeIndex = ref(0);
 const onChange = (ev) => {
     activeIndex.value = ev.detail.current;
 };
+
+const naviToYuYue = ()=>{
+	uni.navigateTo({
+		url:"/pages/yuyue/yuyue",
+	})
+}
 </script>
 
 <template>
@@ -33,7 +39,7 @@ const onChange = (ev) => {
             </view>
             <text class="title">小 羊 试 驾</text>
             <text class="descide-info">{{ swiperList[activeIndex].describeInfo }}</text>
-            <button class="book-btn">预约试驾</button>
+            <button class="book-btn" @click="naviToYuYue">预约试驾</button>
         </view>
     </view>
 </template>
@@ -89,6 +95,8 @@ const onChange = (ev) => {
         font-size: 64rpx;
         color: #ffffff;
         text-align: center; /* 居中文字 */
+		font-family: SimHei;
+		font-weight: lighter;
     }
 
     .descide-info {
@@ -102,6 +110,7 @@ const onChange = (ev) => {
         color: #ffffff;
         display: flex; /* 使用 Flex 布局 */
         justify-content: center; /* 水平居中 */
+		font-weight: lighter;
     }
 
     .book-btn {
@@ -121,6 +130,7 @@ const onChange = (ev) => {
         justify-content: center; /* 水平居中 */
         align-items: center; /* 垂直居中 */
         cursor: pointer;
+		font-weight: lighter;
     }
 }
 </style>

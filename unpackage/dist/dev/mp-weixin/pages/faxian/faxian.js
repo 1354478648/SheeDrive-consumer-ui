@@ -17,6 +17,11 @@ const _sfc_main = {
     const onChange = (ev) => {
       activeIndex.value = ev.detail.current;
     };
+    const naviToYuYue = () => {
+      common_vendor.index.navigateTo({
+        url: "/pages/yuyue/yuyue"
+      });
+    };
     return (_ctx, _cache) => {
       return {
         a: common_vendor.f(swiperList.value, (item, k0, i0) => {
@@ -32,7 +37,8 @@ const _sfc_main = {
             b: index === activeIndex.value ? 1 : ""
           };
         }),
-        d: common_vendor.t(swiperList.value[activeIndex.value].describeInfo)
+        d: common_vendor.t(swiperList.value[activeIndex.value].describeInfo),
+        e: common_vendor.o(naviToYuYue)
       };
     };
   }

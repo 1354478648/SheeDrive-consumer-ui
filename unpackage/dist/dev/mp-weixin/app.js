@@ -7,6 +7,7 @@ if (!Math) {
   "./pages/faxian/faxian.js";
   "./pages/ditu/ditu.js";
   "./pages/wode/wode.js";
+  "./pages/yuyue/yuyue.js";
 }
 const _sfc_main = {};
 function _sfc_render(_ctx, _cache) {
