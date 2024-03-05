@@ -1,9 +1,9 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
 const api_mobile = require("../../api/mobile.js");
+const stores_modules_info = require("../../stores/modules/info.js");
 require("../../utils/request.js");
-require("../../stores/index.js");
-require("../../stores/modules/info.js");
+require("../../stores/modules/token.js");
 const _sfc_main = {
   __name: "faxian",
   setup(__props) {
@@ -18,9 +18,16 @@ const _sfc_main = {
       activeIndex.value = ev.detail.current;
     };
     const naviToYuYue = () => {
-      common_vendor.index.navigateTo({
-        url: "/pages/yuyue/yuyue"
-      });
+      const infoStore = stores_modules_info.useInfoStore();
+      if (infoStore.info == null) {
+        common_vendor.index.navigateTo({
+          url: "/pages/login/login"
+        });
+      } else {
+        common_vendor.index.navigateTo({
+          url: "/pages/category/category"
+        });
+      }
     };
     return (_ctx, _cache) => {
       return {

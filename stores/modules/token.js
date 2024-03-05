@@ -1,25 +1,24 @@
+// 定义store
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
-export const useInfoStore = defineStore('info',
+export const useTokenStore = defineStore('token',
 	() => {
-		// 用户信息
-		const info = ref()
+		const token = ref('')
 
-		// 保存用户信息，登录时使用
-		const setInfo = (newInfo) => {
-			info.value = newInfo
+		const setToken = (newToken) => {
+			token.value = newToken
 		}
 
-		// 清理用户信息，退出时使用
-		const clearInfo = () => {
-			info.value = {}
+		const removeToken = () => {
+			token.value = ''
 		}
 
+		// 返回值
 		return {
-			info,
-			setInfo,
-			clearInfo,
+			token,
+			setToken,
+			removeToken
 		}
 	}, {
 		// 配置持久化

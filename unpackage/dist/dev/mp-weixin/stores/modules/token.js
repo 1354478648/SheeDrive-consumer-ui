@@ -1,19 +1,19 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
-const useInfoStore = common_vendor.defineStore(
-  "info",
+const useTokenStore = common_vendor.defineStore(
+  "token",
   () => {
-    const info = common_vendor.ref();
-    const setInfo = (newInfo) => {
-      info.value = newInfo;
+    const token = common_vendor.ref("");
+    const setToken = (newToken) => {
+      token.value = newToken;
     };
-    const clearInfo = () => {
-      info.value = {};
+    const removeToken = () => {
+      token.value = "";
     };
     return {
-      info,
-      setInfo,
-      clearInfo
+      token,
+      setToken,
+      removeToken
     };
   },
   {
@@ -31,4 +31,4 @@ const useInfoStore = common_vendor.defineStore(
     }
   }
 );
-exports.useInfoStore = useInfoStore;
+exports.useTokenStore = useTokenStore;

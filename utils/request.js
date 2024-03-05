@@ -1,6 +1,9 @@
 import {
 	useInfoStore
-} from "../stores"
+} from "@/stores/modules/info.js"
+import {
+	useTokenStore
+} from "@/stores/modules/token.js"
 
 // 请求基地址
 const baseURL = 'http://localhost:8000'
@@ -20,11 +23,11 @@ const httpInterceptor = {
 			'source-client': 'miniapp',
 			...options.header,
 		}
-		// // 4. 添加 token 请求头标识
-		// const infoStore = useInfoStore()
-		// if (infoStore.info) {
-		// 	options.header.Authorization = infoStore.info.token
-		// }
+		// 4. 添加 token 请求头标识
+		const tokenStore = useTokenStore()
+		if (tokenStore.token) {
+			options.header.Authorization = tokenStore.token
+		}
 	},
 }
 

@@ -1,6 +1,7 @@
 <script setup>
 import { getSwiperService } from '@/api/mobile.js';
 import { ref } from 'vue';
+import { useInfoStore } from '@/stores/modules/info.js';
 
 const swiperList = ref([]);
 const getSwiperList = async () => {
@@ -16,11 +17,18 @@ const onChange = (ev) => {
     activeIndex.value = ev.detail.current;
 };
 
-const naviToYuYue = ()=>{
-	uni.navigateTo({
-		url:"/pages/yuyue/yuyue",
-	})
-}
+const naviToYuYue = () => {
+    const infoStore = useInfoStore();
+    if (infoStore.info == null) {
+        uni.navigateTo({
+            url: '/pages/login/login'
+        });
+    } else {
+        uni.navigateTo({
+            url: '/pages/category/category'
+        });
+    }
+};
 </script>
 
 <template>
@@ -95,8 +103,8 @@ const naviToYuYue = ()=>{
         font-size: 64rpx;
         color: #ffffff;
         text-align: center; /* 居中文字 */
-		font-family: SimHei;
-		font-weight: lighter;
+        font-family: SimHei;
+        font-weight: lighter;
     }
 
     .descide-info {
@@ -110,7 +118,7 @@ const naviToYuYue = ()=>{
         color: #ffffff;
         display: flex; /* 使用 Flex 布局 */
         justify-content: center; /* 水平居中 */
-		font-weight: lighter;
+        font-weight: lighter;
     }
 
     .book-btn {
@@ -130,7 +138,7 @@ const naviToYuYue = ()=>{
         justify-content: center; /* 水平居中 */
         align-items: center; /* 垂直居中 */
         cursor: pointer;
-		font-weight: lighter;
+        font-weight: lighter;
     }
 }
 </style>

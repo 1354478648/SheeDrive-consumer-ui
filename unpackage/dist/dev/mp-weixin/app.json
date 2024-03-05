@@ -3,7 +3,10 @@
     "pages/faxian/faxian",
     "pages/ditu/ditu",
     "pages/wode/wode",
-    "pages/yuyue/yuyue"
+    "pages/category/category",
+    "pages/login/login",
+    "pages/agreement/agreement",
+    "pages/register/register"
   ],
   "window": {
     "navigationBarTextStyle": "white",

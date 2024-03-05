@@ -10,7 +10,7 @@ if (!Math) {
   _easycom_uni_icons();
 }
 const _sfc_main = {
-  __name: "yuyue",
+  __name: "category",
   setup(__props) {
     return (_ctx, _cache) => {
       return {
@@ -43,5 +43,5 @@ const _sfc_main = {
     };
   }
 };
-const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "D:/文档/大学文档/A毕业设计/小羊试驾/SheeDrive-consumer-ui/pages/yuyue/yuyue.vue"]]);
+const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "D:/文档/大学文档/A毕业设计/小羊试驾/SheeDrive-consumer-ui/pages/category/category.vue"]]);
 wx.createPage(MiniProgramPage);

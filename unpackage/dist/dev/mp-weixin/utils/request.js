@@ -1,7 +1,7 @@
 "use strict";
 const common_vendor = require("../common/vendor.js");
-require("../stores/index.js");
 const stores_modules_info = require("../stores/modules/info.js");
+const stores_modules_token = require("../stores/modules/token.js");
 const baseURL = "http://localhost:8000";
 const httpInterceptor = {
   // 拦截前触发
@@ -14,6 +14,10 @@ const httpInterceptor = {
       "source-client": "miniapp",
       ...options.header
     };
+    const tokenStore = stores_modules_token.useTokenStore();
+    if (tokenStore.token) {
+      options.header.Authorization = tokenStore.token;
+    }
   }
 };
 common_vendor.index.addInterceptor("request", httpInterceptor);

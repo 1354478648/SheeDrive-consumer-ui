@@ -25,11 +25,35 @@
 			}
 		},
 		{
-			"path": "pages/yuyue/yuyue",
+			"path": "pages/category/category",
 			"style": {
 				"navigationBarBackgroundColor":"#fff",
 				"navigationBarTextStyle": "black",
 				"navigationBarTitleText": "预约试驾"
+			}
+		},
+		{
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarBackgroundColor":"#fff",
+				"navigationBarTextStyle": "black",
+				"navigationBarTitleText": "登录"
+			}
+		},
+		{
+			"path": "pages/agreement/agreement",
+			"style": {
+				"navigationBarBackgroundColor":"#fff",
+				"navigationBarTextStyle": "black",
+				"navigationBarTitleText": "用户协议与隐私条款"
+			}
+		},
+		{
+			"path": "pages/register/register",
+			"style": {
+				"navigationBarBackgroundColor":"#fff",
+				"navigationBarTextStyle": "black",
+				"navigationBarTitleText": "注册"
 			}
 		}
 	],
