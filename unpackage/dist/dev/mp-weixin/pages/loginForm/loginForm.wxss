@@ -67,6 +67,13 @@ page {
   display: block;
   height: 46rpx;
 }
+.content .form-item .code-button,
+.content .uni-forms-item .code-button {
+  height: 80rpx;
+  color: #fff;
+  font-size: 30rpx;
+  background-color: #47dfff;
+}
 .content .form-item .switch,
 .content .uni-forms-item .switch {
   position: absolute;

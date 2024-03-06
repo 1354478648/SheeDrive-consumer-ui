@@ -11,6 +11,7 @@ if (!Math) {
   "./pages/login/login.js";
   "./pages/agreement/agreement.js";
   "./pages/register/register.js";
+  "./pages/loginForm/loginForm.js";
 }
 const _sfc_main = {};
 function _sfc_render(_ctx, _cache) {

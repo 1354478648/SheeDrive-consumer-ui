@@ -26,6 +26,17 @@ const _sfc_main = {
         url: "/pages/register/register"
       });
     };
+    const naviToLoginForm = (way) => {
+      common_vendor.index.navigateTo({
+        url: `/pages/loginForm/loginForm?way=${way}`
+      });
+    };
+    const fastLogin = () => {
+      common_vendor.index.showToast({
+        icon: "close",
+        title: "暂未开放"
+      });
+    };
     return (_ctx, _cache) => {
       return {
         a: common_assets._imports_0,
@@ -34,23 +45,26 @@ const _sfc_main = {
           size: "16",
           color: "white"
         }),
-        c: common_vendor.o(naviToRegister),
-        d: common_vendor.p({
-          type: "auth",
-          size: "16"
-        }),
+        c: common_vendor.o(fastLogin),
+        d: common_vendor.o(naviToRegister),
         e: common_vendor.p({
-          type: "email",
-          size: "16"
+          type: "auth",
+          size: "24"
         }),
-        f: common_vendor.o(naviToAgreement),
+        f: common_vendor.o(($event) => naviToLoginForm("pwd")),
         g: common_vendor.p({
+          type: "email",
+          size: "24"
+        }),
+        h: common_vendor.o(($event) => naviToLoginForm("code")),
+        i: common_vendor.o(naviToAgreement),
+        j: common_vendor.p({
           type: "info",
           message: "本系统由 上海工程技术大学 计算机科学与技术专业 2024届毕业生 汤晟 于2024年开发",
           duration: 2e3
         }),
-        h: common_vendor.sr("popup", "1eaf4d1a-3"),
-        i: common_vendor.p({
+        k: common_vendor.sr("popup", "1eaf4d1a-3"),
+        l: common_vendor.p({
           type: "right"
         })
       };

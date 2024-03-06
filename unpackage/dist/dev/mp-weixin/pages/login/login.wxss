@@ -70,6 +70,15 @@ page {
   font-size: 40rpx;
   margin-right: 6rpx;
 }
+.login .register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30rpx;
+}
+.login .register .register-text {
+  font-size: 28rpx;
+}
 .login .phone {
   background-color: #47dfff;
 }
@@ -101,31 +110,16 @@ page {
   align-items: center;
   margin-top: 70rpx;
 }
-.login .extra .options button {
-  padding: 0;
+.login .extra .options .options-view {
   background-color: transparent;
+  margin: 0 50rpx 0 50rpx;
 }
 .login .extra .icon {
-  font-size: 24rpx;
   color: #444;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-.login .extra .icon::before {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 80rpx;
-  height: 80rpx;
-  margin-bottom: 6rpx;
-  font-size: 40rpx;
-  border: 1rpx solid #444;
-  border-radius: 50%;
-}
-.login .extra .icon-weixin::before {
-  border-color: #06c05f;
-  color: #06c05f;
+  margin-bottom: 10rpx;
 }
 .tips {
   position: absolute;

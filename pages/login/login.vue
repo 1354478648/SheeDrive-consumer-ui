@@ -3,16 +3,31 @@ import { ref } from 'vue';
 
 // 跳转至用户协议与隐私条款页面
 const naviToAgreement = () => {
-	uni.navigateTo({
-	    url: '/pages/agreement/agreement'
-	});
+    uni.navigateTo({
+        url: '/pages/agreement/agreement'
+    });
 };
 
 // 跳转至注册页面
-const naviToRegister = ()=>{
-	uni.navigateTo({
-	    url: '/pages/register/register'
+const naviToRegister = () => {
+    uni.navigateTo({
+        url: '/pages/register/register'
+    });
+};
+
+const naviToLoginForm = (way) => {
+    uni.navigateTo({
+        url: `/pages/loginForm/loginForm?way=${way}`
+    });
+};
+
+// 快速登录（获取手机号功能目前针对非个人开发者，所以个人开发者无法唤起获取手机号界面）
+const fastLogin = ()=>{
+	uni.showToast({
+	    icon: 'close',
+	    title: '暂未开放'
 	});
+	
 }
 </script>
 
@@ -23,25 +38,30 @@ const naviToRegister = ()=>{
         </view>
         <view class="login">
             <!-- 小程序端授权登录 -->
-            <button class="button phone">
-				<uni-icons type="phone" size="16" color="white"></uni-icons>
+            <button class="button phone" @click="fastLogin">
+                <uni-icons type="phone" size="16" color="white"></uni-icons>
                 <text class="icon icon-phone"></text>
                 手机号快捷登录
             </button>
-			<text>还没有账号？<text @click="naviToRegister">点击注册</text></text>
+            <view class="register">
+                <text class="register-text">
+                    还没有账号？
+                    <text @click="naviToRegister" style="color: #47dfff">点击注册</text>
+                </text>
+            </view>
             <view class="extra">
                 <view class="caption">
                     <text>其他登录方式</text>
                 </view>
                 <view class="options">
-                    <button>
-                        <uni-icons type="auth" size="16"></uni-icons>
-                        <text class="">密码登录</text>
-                    </button>
-                    <button>
-                        <uni-icons type="email" size="16"></uni-icons>
-                        <text class="">验证码登录</text>
-                    </button>
+                    <view class="options-view" @click="naviToLoginForm('pwd')">
+                        <uni-icons class="icon" type="auth" size="24"></uni-icons>
+                        <text style="font-size: 24rpx">密码登录</text>
+                    </view>
+                    <view class="options-view" @click="naviToLoginForm('code')">
+                        <uni-icons class="icon" type="email" size="24"></uni-icons>
+                        <text style="font-size: 24rpx">验证码登录</text>
+                    </view>
                 </view>
             </view>
             <view class="tips">
@@ -111,6 +131,16 @@ page {
         }
     }
 
+    .register {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 30rpx;
+        .register-text {
+            font-size: 28rpx;
+        }
+    }
+
     .phone {
         background-color: #47dfff;
     }
@@ -143,35 +173,43 @@ page {
             justify-content: center;
             align-items: center;
             margin-top: 70rpx;
-            button {
-                padding: 0;
+            .options-view {
                 background-color: transparent;
+                margin: 0 50rpx 0 50rpx;
             }
         }
 
         .icon {
-            font-size: 24rpx;
             color: #444;
             display: flex;
             flex-direction: column;
             align-items: center;
+            margin-bottom: 10rpx;
+        }
 
-            &::before {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                width: 80rpx;
-                height: 80rpx;
-                margin-bottom: 6rpx;
-                font-size: 40rpx;
-                border: 1rpx solid #444;
-                border-radius: 50%;
-            }
-        }
-        .icon-weixin::before {
-            border-color: #06c05f;
-            color: #06c05f;
-        }
+        // .icon {
+        //     font-size: 24rpx;
+        //     color: #444;
+        //     display: flex;
+        //     flex-direction: column;
+        //     align-items: center;
+
+        //     &::before {
+        //         display: flex;
+        //         align-items: center;
+        //         justify-content: center;
+        //         width: 80rpx;
+        //         height: 80rpx;
+        //         margin-bottom: 6rpx;
+        //         font-size: 40rpx;
+        //         border: 1rpx solid #444;
+        //         border-radius: 50%;
+        //     }
+        // }
+        // .icon-weixin::before {
+        //     border-color: #06c05f;
+        //     color: #06c05f;
+        // }
     }
 }
 

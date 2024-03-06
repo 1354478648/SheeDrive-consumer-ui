@@ -1,36 +1,63 @@
-<script setup></script>
+<script setup>
+import { ref } from 'vue';
+import { userRegisterService } from '@/api/user.js';
+
+const registerData = ref({
+    name: '',
+    idCard: '',
+    phone: '',
+    password: '',
+    confirmPassword: ''
+});
+
+const register = async () => {
+    const data = {
+        last_name: registerData.value.name.substring(0, 1),
+        first_name: registerData.value.name.substring(1),
+        id_number: registerData.value.idCard,
+        phone: registerData.value.phone,
+        password: registerData.value.password,
+        confirmPassword: registerData.value.confirmPassword
+    };
+    let result = await userRegisterService(data);
+	uni.redirectTo({
+	    url: '/pages/login/login'
+	});
+	uni.showToast({
+		icon: 'checkmarkempty',
+		title: '注册成功',
+	})
+};
+</script>
 
 <template>
     <view class="content">
         <form>
             <!-- 表单内容 -->
             <view class="form-item">
-                <text class="label">收货人</text>
-                <input class="input" placeholder="请填写收货人姓名" value="" />
+                <text class="label">姓名</text>
+                <input type="text" v-model="registerData.name" class="input" placeholder="请填写您的姓名" />
             </view>
             <view class="form-item">
-                <text class="label">手机号码</text>
-                <input class="input" placeholder="请填写收货人手机号码" value="" />
+                <text class="label">身份证号</text>
+                <input type="idcard" v-model="registerData.idCard" maxlength="18" class="input" placeholder="请填写您的身份证号" />
             </view>
             <view class="form-item">
-                <text class="label">所在地区</text>
-                <picker class="picker" mode="region" value="">
-                    <view v-if="false">广东省 广州市 天河区</view>
-                    <view v-else class="placeholder">请选择省/市/区(县)</view>
-                </picker>
+                <text class="label">联系电话</text>
+                <input type="tel" v-model="registerData.phone" maxlength="11" class="input" placeholder="请填写您的联系电话" />
             </view>
             <view class="form-item">
-                <text class="label">详细地址</text>
-                <input class="input" placeholder="街道、楼牌号等信息" value="" />
+                <text class="label">密码</text>
+                <input type="safe-password" v-model="registerData.password" password="true" class="input" placeholder="请填写您的密码" />
             </view>
             <view class="form-item">
-                <label class="label">设为默认地址</label>
-                <switch class="switch" color="#27ba9b" :checked="true" />
+                <text class="label">确认密码</text>
+                <input type="safe-password" v-model="registerData.confirmPassword" password="true" class="input" placeholder="请重新填写您的密码" />
             </view>
         </form>
     </view>
     <!-- 提交按钮 -->
-    <button class="button">保存并使用</button>
+    <button class="button" @click="register">点击注册</button>
 </template>
 
 <style lang="scss">
@@ -102,6 +129,6 @@ page {
     color: #fff;
     border-radius: 80rpx;
     font-size: 30rpx;
-    background-color: #27ba9b;
+    background-color: #47dfff;
 }
 </style>

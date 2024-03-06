@@ -55,6 +55,14 @@
 				"navigationBarTextStyle": "black",
 				"navigationBarTitleText": "注册"
 			}
+		},
+		{
+			"path": "pages/loginForm/loginForm",
+			"style": {
+				"navigationBarBackgroundColor":"#fff",
+				"navigationBarTextStyle": "black",
+				"navigationBarTitleText": "登录"
+			}
 		}
 	],
 	"globalStyle": {

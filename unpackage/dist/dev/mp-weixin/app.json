@@ -6,7 +6,8 @@
     "pages/category/category",
     "pages/login/login",
     "pages/agreement/agreement",
-    "pages/register/register"
+    "pages/register/register",
+    "pages/loginForm/loginForm"
   ],
   "window": {
     "navigationBarTextStyle": "white",
