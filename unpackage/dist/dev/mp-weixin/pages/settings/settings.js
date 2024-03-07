@@ -28,6 +28,17 @@ const _sfc_main = {
         });
       }
     };
+    const naviToAddress = () => {
+      if (infoStore.info) {
+        common_vendor.index.navigateTo({
+          url: "/pages/address/address"
+        });
+      } else {
+        common_vendor.index.navigateTo({
+          url: "/pages/login/login"
+        });
+      }
+    };
     const logout = () => {
       if (!infoStore.info) {
         common_vendor.index.showToast({
@@ -63,15 +74,17 @@ const _sfc_main = {
         c: common_vendor.p({
           title: "我的订单"
         }),
-        d: common_vendor.p({
-          title: "我的地址簿"
-        }),
+        d: common_vendor.o(naviToAddress),
         e: common_vendor.p({
+          title: "我的地址簿",
+          link: true
+        }),
+        f: common_vendor.p({
           title: "用户协议与隐私条款",
           link: true,
-          to: "/pages/agreement/agreement"
+          to: "/pages/address/address"
         }),
-        f: common_vendor.o(logout)
+        g: common_vendor.o(logout)
       };
     };
   }

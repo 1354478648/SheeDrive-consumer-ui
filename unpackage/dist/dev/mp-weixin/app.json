@@ -10,7 +10,8 @@
     "pages/loginForm/loginForm",
     "pages/settings/settings",
     "pages/profile/profile",
-    "pages/changePwd/changePwd"
+    "pages/changePwd/changePwd",
+    "pages/address/address"
   ],
   "window": {
     "navigationBarTextStyle": "white",

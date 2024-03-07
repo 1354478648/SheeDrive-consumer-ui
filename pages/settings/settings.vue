@@ -16,6 +16,18 @@ const naviToProfile = () => {
     }
 };
 
+const naviToAddress = () => {
+    if (infoStore.info) {
+        uni.navigateTo({
+            url: '/pages/address/address'
+        });
+    } else {
+        uni.navigateTo({
+            url: '/pages/login/login'
+        });
+    }
+};
+
 const logout = () => {
 	if(!infoStore.info){
 		uni.showToast({
@@ -50,8 +62,8 @@ const logout = () => {
         <uni-list>
             <uni-list-item title="个人资料" link @click="naviToProfile"></uni-list-item>
             <uni-list-item title="我的订单"></uni-list-item>
-            <uni-list-item title="我的地址簿"></uni-list-item>
-            <uni-list-item title="用户协议与隐私条款" link to="/pages/agreement/agreement"></uni-list-item>
+            <uni-list-item title="我的地址簿" link @click="naviToAddress"></uni-list-item>
+            <uni-list-item title="用户协议与隐私条款" link to="/pages/address/address"></uni-list-item>
         </uni-list>
     </view>
     <button class="button" @click="logout">退出登录</button>

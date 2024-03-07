@@ -15,6 +15,7 @@ if (!Math) {
   "./pages/settings/settings.js";
   "./pages/profile/profile.js";
   "./pages/changePwd/changePwd.js";
+  "./pages/address/address.js";
 }
 const _sfc_main = {};
 function _sfc_render(_ctx, _cache) {

@@ -29,7 +29,7 @@ const havaOrderData = ref(false);
             </view>
             <!-- 情况2：未登录 -->
             <view class="overview" v-else>
-                <navigator url="/pages/login/login" open-type="redirect" hover-class="none">
+                <navigator url="/pages/login/login" hover-class="none">
                     <image
                         class="avatar gray"
                         mode="aspectFill"
@@ -37,7 +37,7 @@ const havaOrderData = ref(false);
                     ></image>
                 </navigator>
                 <view class="meta">
-                    <navigator url="/pages/login/login" open-type="redirect" hover-class="none" class="nickname">未登录</navigator>
+                    <navigator url="/pages/login/login" hover-class="none" class="nickname">未登录</navigator>
                     <view class="extra">
                         <text class="tips">点击登录账号</text>
                     </view>
