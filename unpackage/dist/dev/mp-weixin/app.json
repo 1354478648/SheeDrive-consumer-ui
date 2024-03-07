@@ -7,7 +7,10 @@
     "pages/login/login",
     "pages/agreement/agreement",
     "pages/register/register",
-    "pages/loginForm/loginForm"
+    "pages/loginForm/loginForm",
+    "pages/settings/settings",
+    "pages/profile/profile",
+    "pages/changePwd/changePwd"
   ],
   "window": {
     "navigationBarTextStyle": "white",

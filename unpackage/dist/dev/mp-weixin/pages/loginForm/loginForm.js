@@ -29,8 +29,8 @@ const _sfc_main = {
         let result = await api_user.userLoginService(data);
         tokenStore.setToken(result.data.token);
         infoStore.setInfo(result.data.user_info);
-        common_vendor.index.redirectTo({
-          url: "/pages/category/category"
+        common_vendor.index.switchTab({
+          url: "/pages/wode/wode"
         });
         common_vendor.index.showToast({
           icon: "checkmarkempty",
@@ -44,8 +44,8 @@ const _sfc_main = {
         let result = await api_user.userLoginByPhoneService(data);
         tokenStore.setToken(result.data.token);
         infoStore.setInfo(result.data.user_info);
-        common_vendor.index.redirectTo({
-          url: "/pages/category/category"
+        common_vendor.index.switchTab({
+          url: "/pages/wode/wode"
         });
         common_vendor.index.showToast({
           icon: "checkmarkempty",

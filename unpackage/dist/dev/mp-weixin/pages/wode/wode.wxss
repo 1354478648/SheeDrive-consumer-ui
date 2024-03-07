@@ -31,7 +31,7 @@ page {
 .viewport {
   height: 100%;
   background-repeat: no-repeat;
-  background-image: url(https://sheedrive.oss-cn-shanghai.aliyuncs.com/sys/navigator_bg.png);
+  background-image: url("https://sheedrive.oss-cn-shanghai.aliyuncs.com/sys/center_bg.png");
   background-size: 100% auto;
 }
 
@@ -118,25 +118,15 @@ page {
 .orders .section {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
   padding: 40rpx 20rpx 10rpx;
 }
-.orders .section .navigator,
-.orders .section .contact {
+.orders .section .nodata {
   text-align: center;
+  margin: 100rpx 0 100rpx 0;
+}
+.orders .section .nodata .nodata-text {
   font-size: 24rpx;
-  color: #333;
-}
-.orders .section .navigator::before,
-.orders .section .contact::before {
-  display: block;
-  font-size: 60rpx;
-  color: #ff9545;
-}
-.orders .section .contact {
-  padding: 0;
-  margin: 0;
-  border: 0;
-  background-color: transparent;
-  line-height: inherit;
+  color: #999;
 }

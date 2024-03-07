@@ -28,3 +28,21 @@ export const userLoginByPhoneService = (data) => {
 		data
 	})
 }
+
+// 用户修改头像
+export const userUpdateAvatarService = (data) =>{
+	return http({
+		method: 'PUT',
+		url: '/user/updateAvatar',
+		data
+	})
+}
+
+// 用户修改密码
+export const userUpdatePasswordService = (data) =>{
+	return http({
+		method: 'PUT',
+		url: '/user/updatePasswordByPhone',
+		data
+	})
+}

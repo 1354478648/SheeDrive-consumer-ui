@@ -12,6 +12,9 @@ if (!Math) {
   "./pages/agreement/agreement.js";
   "./pages/register/register.js";
   "./pages/loginForm/loginForm.js";
+  "./pages/settings/settings.js";
+  "./pages/profile/profile.js";
+  "./pages/changePwd/changePwd.js";
 }
 const _sfc_main = {};
 function _sfc_render(_ctx, _cache) {

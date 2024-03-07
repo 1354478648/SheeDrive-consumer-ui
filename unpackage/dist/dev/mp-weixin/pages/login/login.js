@@ -22,12 +22,12 @@ const _sfc_main = {
       });
     };
     const naviToRegister = () => {
-      common_vendor.index.navigateTo({
+      common_vendor.index.redirectTo({
         url: "/pages/register/register"
       });
     };
     const naviToLoginForm = (way) => {
-      common_vendor.index.navigateTo({
+      common_vendor.index.redirectTo({
         url: `/pages/loginForm/loginForm?way=${way}`
       });
     };
@@ -39,7 +39,7 @@ const _sfc_main = {
     };
     return (_ctx, _cache) => {
       return {
-        a: common_assets._imports_0,
+        a: common_assets._imports_0$1,
         b: common_vendor.p({
           type: "phone",
           size: "16",

@@ -1,60 +1,18 @@
 <script setup>
 import { ref } from 'vue';
-import { onLoad } from '@dcloudio/uni-app';
-import { userLoginService, userLoginByPhoneService } from '@/api/user.js';
 import { smsSendCode } from '@/api/sms.js';
 import { useTokenStore } from '@/stores/modules/token.js';
 const tokenStore = useTokenStore();
 import { useInfoStore } from '@/stores/modules/info.js';
 const infoStore = useInfoStore();
+import { userUpdatePasswordService } from '@/api/user.js';
 
-// 获取登录方式
-const way = ref('');
-onLoad((options) => {
-    way.value = options.way;
+const updatePwdData = ref({
+    phone: '',
+    code: '',
+    newPassword: '',
+    confirmPassword: ''
 });
-
-const showLoginButton = ref(true);
-
-const loginData = ref({
-    username: '',
-    password: '',
-    code: ''
-});
-
-const login = async () => {
-    if (way.value === 'pwd') {
-        const data = {
-            username: loginData.value.username,
-            password: loginData.value.password
-        };
-        let result = await userLoginService(data);
-		tokenStore.setToken(result.data.token);
-		infoStore.setInfo(result.data.user_info);
-		uni.switchTab({
-		    url: '/pages/wode/wode'
-		});
-		uni.showToast({
-		    icon: 'checkmarkempty',
-		    title: `欢迎，${infoStore.info.lastName}` + (infoStore.info.sex === '男' ? '先生' : '女士')
-		});
-    } else {
-        const data = {
-            phone: loginData.value.username,
-            code: loginData.value.code
-        };
-        let result = await userLoginByPhoneService(data);
-		tokenStore.setToken(result.data.token);
-		infoStore.setInfo(result.data.user_info);
-		uni.switchTab({
-		    url: '/pages/wode/wode'
-		});
-		uni.showToast({
-		    icon: 'checkmarkempty',
-		    title: `欢迎，${infoStore.info.lastName}` + (infoStore.info.sex === '男' ? '先生' : '女士')
-		});
-    }
-};
 
 const getCodeButtonActive = ref(false);
 const countDown = ref(60);
@@ -62,14 +20,14 @@ const getCode = async () => {
     getCodeButtonActive.value = true;
     startCountDown();
     const data = {
-        phone: loginData.value.username
+        phone: updatePwdData.value.phone
     };
     let result = await smsSendCode(data);
     uni.showToast({
         icon: 'checkmarkempty',
         title: '验证码已发送'
     });
-    loginData.value.code = result.data.code;
+    updatePwdData.value.code = result.data.code;
 };
 
 const startCountDown = () => {
@@ -83,6 +41,28 @@ const startCountDown = () => {
         }
     }, 1000);
 };
+
+const confirm = async () => {
+	const data = {
+		phone: updatePwdData.value.phone,
+		code: updatePwdData.value.code,
+		newPassword: updatePwdData.value.newPassword,
+		confirmPassword: updatePwdData.value.confirmPassword
+	}
+	
+    await userUpdatePasswordService(data);
+
+    // 清理用户信息
+    infoStore.removeInfo();
+    tokenStore.removeToken();
+    uni.switchTab({
+        url: '/pages/wode/wode'
+    });
+    uni.showToast({
+        icon: 'checkmarkempty',
+        title: '修改成功'
+    });
+};
 </script>
 
 <template>
@@ -91,21 +71,25 @@ const startCountDown = () => {
             <!-- 表单内容 -->
             <view class="form-item">
                 <text class="label">手机号</text>
-                <input type="text" v-model="loginData.username" maxlength="11" class="input" placeholder="请填写您的手机号" />
+                <input type="text" v-model="updatePwdData.phone" class="input" placeholder="请填写您的手机号" />
             </view>
-            <view class="form-item" v-if="way === 'pwd'">
-                <text class="label">密码</text>
-                <input type="safe-password" v-model="loginData.password" password="true" class="input" placeholder="请填写您的密码" />
-            </view>
-            <view class="form-item" v-if="way === 'code'">
+            <view class="form-item">
                 <text class="label">验证码</text>
-                <input type="number" v-model="loginData.code" maxlength="6" class="input" placeholder="请填写您的验证码" />
+                <input type="number" v-model="updatePwdData.code" maxlength="6" class="input" placeholder="请填写您的验证码" />
                 <button class="code-button" @click="getCode" :disabled="getCodeButtonActive">{{ !getCodeButtonActive ? '获取验证码' : `${countDown}秒后重试` }}</button>
+            </view>
+            <view class="form-item">
+                <text class="label">新密码</text>
+                <input type="text" v-model="updatePwdData.newPassword" password="true" class="input" placeholder="请填写您的密码" />
+            </view>
+            <view class="form-item">
+                <text class="label">确认密码</text>
+                <input type="text" v-model="updatePwdData.confirmPassword" password="true" class="input" placeholder="请重新填写您的密码" />
             </view>
         </form>
     </view>
     <!-- 提交按钮 -->
-    <button class="button" @click="login" v-if="showLoginButton">点击登录</button>
+    <button class="button" @click="confirm">确认修改</button>
 </template>
 
 <style lang="scss">

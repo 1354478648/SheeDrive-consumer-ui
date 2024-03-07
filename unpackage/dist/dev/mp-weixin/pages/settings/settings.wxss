@@ -23,12 +23,19 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.view {
-  display: flex;
-  justify-content: center;
-  padding: 20rpx 20rpx 0 20rpx;
-  box-sizing: border-box;
+page {
+  background-color: #f4f4f4;
 }
-.view .text {
-  font-size: 32rpx;
+.content {
+  margin: 20rpx 20rpx 0;
+  padding: 0 20rpx;
+  border-radius: 10rpx;
+  background-color: #fff;
+}
+.button {
+  height: 80rpx;
+  margin: 40rpx 50rpx;
+  color: #fff;
+  font-size: 30rpx;
+  background-color: red;
 }

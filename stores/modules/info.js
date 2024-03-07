@@ -12,14 +12,14 @@ export const useInfoStore = defineStore('info',
 		}
 
 		// 清理用户信息，退出时使用
-		const clearInfo = () => {
-			info.value = {}
+		const removeInfo = () => {
+			info.value = null
 		}
 
 		return {
 			info,
 			setInfo,
-			clearInfo,
+			removeInfo,
 		}
 	}, {
 		// 配置持久化

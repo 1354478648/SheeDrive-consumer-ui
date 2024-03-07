@@ -11,9 +11,7 @@
 		{
 			"path": "pages/ditu/ditu",
 			"style": {
-				"navigationStyle": "custom",
-				"navigationBarTextStyle": "white",
-				"navigationBarTitleText": "地图"
+				"navigationStyle": "custom"
 			}
 		},
 		{
@@ -27,7 +25,7 @@
 		{
 			"path": "pages/category/category",
 			"style": {
-				"navigationBarBackgroundColor":"#fff",
+				"navigationBarBackgroundColor": "#fff",
 				"navigationBarTextStyle": "black",
 				"navigationBarTitleText": "预约试驾"
 			}
@@ -35,7 +33,7 @@
 		{
 			"path": "pages/login/login",
 			"style": {
-				"navigationBarBackgroundColor":"#fff",
+				"navigationBarBackgroundColor": "#fff",
 				"navigationBarTextStyle": "black",
 				"navigationBarTitleText": "登录"
 			}
@@ -43,7 +41,7 @@
 		{
 			"path": "pages/agreement/agreement",
 			"style": {
-				"navigationBarBackgroundColor":"#fff",
+				"navigationBarBackgroundColor": "#fff",
 				"navigationBarTextStyle": "black",
 				"navigationBarTitleText": "用户协议与隐私条款"
 			}
@@ -51,7 +49,7 @@
 		{
 			"path": "pages/register/register",
 			"style": {
-				"navigationBarBackgroundColor":"#fff",
+				"navigationBarBackgroundColor": "#fff",
 				"navigationBarTextStyle": "black",
 				"navigationBarTitleText": "注册"
 			}
@@ -59,9 +57,31 @@
 		{
 			"path": "pages/loginForm/loginForm",
 			"style": {
-				"navigationBarBackgroundColor":"#fff",
+				"navigationBarBackgroundColor": "#fff",
 				"navigationBarTextStyle": "black",
 				"navigationBarTitleText": "登录"
+			}
+		},
+		{
+			"path": "pages/settings/settings",
+			"style": {
+				"navigationBarBackgroundColor": "#fff",
+				"navigationBarTextStyle": "black",
+				"navigationBarTitleText": "设置"
+			}
+		},
+		{
+			"path": "pages/profile/profile",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/changePwd/changePwd",
+			"style": {
+				"navigationBarBackgroundColor": "#fff",
+				"navigationBarTextStyle": "black",
+				"navigationBarTitleText": "修改密码"
 			}
 		}
 	],

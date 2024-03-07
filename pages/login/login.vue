@@ -10,13 +10,13 @@ const naviToAgreement = () => {
 
 // 跳转至注册页面
 const naviToRegister = () => {
-    uni.navigateTo({
+    uni.redirectTo({
         url: '/pages/register/register'
     });
 };
 
 const naviToLoginForm = (way) => {
-    uni.navigateTo({
+    uni.redirectTo({
         url: `/pages/loginForm/loginForm?way=${way}`
     });
 };

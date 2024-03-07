@@ -7,13 +7,13 @@ const useInfoStore = common_vendor.defineStore(
     const setInfo = (newInfo) => {
       info.value = newInfo;
     };
-    const clearInfo = () => {
-      info.value = {};
+    const removeInfo = () => {
+      info.value = null;
     };
     return {
       info,
       setInfo,
-      clearInfo
+      removeInfo
     };
   },
   {

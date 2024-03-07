@@ -10,7 +10,7 @@
 .view {
     display: flex;
     justify-content: center;
-    padding: 0 20rpx;
+    padding: 20rpx 20rpx 0 20rpx;
     box-sizing: border-box;
 
     .text {
