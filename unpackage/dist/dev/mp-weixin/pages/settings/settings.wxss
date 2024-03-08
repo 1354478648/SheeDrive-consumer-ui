@@ -37,5 +37,5 @@ page {
   margin: 40rpx 50rpx;
   color: #fff;
   font-size: 30rpx;
-  background-color: red;
+  background-color: #cf4444;
 }

@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "element-china-area-data": "^6.1.0",
     "pinia-plugin-persistedstate": "^3.2.1"
   }
 }

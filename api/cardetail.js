@@ -1,9 +1,9 @@
 import {http} from '@/utils/request'
 
-// 获取汽车信息
-export const getSwiperService = () => {
+// 通过品牌获取汽车信息
+export const cardetailGetListService = (brand) => {
 	return http({
 		method: 'GET',
-		url: '/mobile/getSwiper',
+		url: `/cardetail/list?size=50&brand=${brand}`,
 	})
 }

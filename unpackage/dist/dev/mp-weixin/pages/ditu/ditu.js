@@ -1,5 +1,9 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
+const api_dealer = require("../../api/dealer.js");
+require("../../utils/request.js");
+require("../../stores/modules/info.js");
+require("../../stores/modules/token.js");
 if (!Math) {
   CustomNavbar();
 }
@@ -41,9 +45,27 @@ const _sfc_main = {
         }
       });
     };
-    common_vendor.onMounted(() => {
-      getLocation();
-    });
+    getLocation();
+    const getDealerLocation = async () => {
+      let result = await api_dealer.dealerGetListService();
+      result.data.List.forEach((item) => {
+        const lngLatArr = item.address.LngLat.split(",");
+        markers.value.push({
+          id: item.id,
+          longitude: parseFloat(lngLatArr[0]),
+          latitude: parseFloat(lngLatArr[1]),
+          callout: {
+            content: item.name,
+            color: "#000000",
+            fontSize: 12,
+            borderRadius: 10,
+            padding: 8,
+            display: "ALWAYS"
+          }
+        });
+      });
+    };
+    getDealerLocation();
     return (_ctx, _cache) => {
       return {
         a: longitude.value,

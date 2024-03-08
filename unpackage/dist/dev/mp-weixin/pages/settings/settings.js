@@ -82,7 +82,7 @@ const _sfc_main = {
         f: common_vendor.p({
           title: "用户协议与隐私条款",
           link: true,
-          to: "/pages/address/address"
+          to: "/pages/agreement/agreement"
         }),
         g: common_vendor.o(logout)
       };

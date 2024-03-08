@@ -63,7 +63,7 @@ const _sfc_main = {
           color: "white"
         }),
         b: ((_a = common_vendor.unref(safeAreaInsets)) == null ? void 0 : _a.top) + "px",
-        c: common_vendor.unref(infoStore).info.avatar ? common_vendor.unref(infoStore).info.avatar : "@/static/default_avatar.jpg",
+        c: common_vendor.unref(infoStore).info.avatar ? common_vendor.unref(infoStore).info.avatar : "https://sheedrive.oss-cn-shanghai.aliyuncs.com/sys/default_avatar.jpg",
         d: common_vendor.o(onAvatarChange),
         e: common_vendor.t(common_vendor.unref(infoStore).info.username),
         f: common_vendor.t(common_vendor.unref(infoStore).info.lastName + common_vendor.unref(infoStore).info.firstName),

@@ -11,7 +11,9 @@
     "pages/settings/settings",
     "pages/profile/profile",
     "pages/changePwd/changePwd",
-    "pages/address/address"
+    "pages/address/address",
+    "pages/addressForm/addressForm",
+    "pages/carList/carList"
   ],
   "window": {
     "navigationBarTextStyle": "white",

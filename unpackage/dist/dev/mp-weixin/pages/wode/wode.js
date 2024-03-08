@@ -13,7 +13,7 @@ const _sfc_main = {
       return common_vendor.e({
         a: common_vendor.unref(infoStore).info
       }, common_vendor.unref(infoStore).info ? {
-        b: common_vendor.unref(infoStore).info.avatar ? common_vendor.unref(infoStore).info.avatar : "@/static/default_avatar.jpg",
+        b: common_vendor.unref(infoStore).info.avatar ? common_vendor.unref(infoStore).info.avatar : "https://sheedrive.oss-cn-shanghai.aliyuncs.com/sys/default_avatar.jpg",
         c: common_vendor.t(common_vendor.unref(infoStore).info.lastName + common_vendor.unref(infoStore).info.firstName)
       } : {
         d: common_assets._imports_0

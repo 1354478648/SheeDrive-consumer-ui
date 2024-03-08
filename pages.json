@@ -91,6 +91,22 @@
 				"navigationBarTextStyle": "black",
 				"navigationBarTitleText": "地址簿"
 			}
+		},
+		{
+			"path": "pages/addressForm/addressForm",
+			"style": {
+				"navigationBarBackgroundColor": "#fff",
+				"navigationBarTextStyle": "black",
+				"navigationBarTitleText": "地址管理"
+			}
+		},
+		{
+			"path": "pages/carList/carList",
+			"style": {
+				"navigationBarBackgroundColor": "#fff",
+				"navigationBarTextStyle": "black",
+				"navigationBarTitleText": "汽车列表"
+			}
 		}
 	],
 	"globalStyle": {

@@ -1,9 +1,11 @@
 <script setup>
 import CustomNavbar from '@/pages/components/CustomNavbar.vue';
 import { ref, onMounted } from 'vue';
+import { dealerGetListService } from '@/api/dealer.js';
 
 const longitude = ref(0); // 经度
 const latitude = ref(0); // 纬度
+// 先初始化当前位置的mark
 const markers = ref([
     {
         id: 0,
@@ -37,16 +39,36 @@ const getLocation = () => {
         }
     });
 };
-onMounted(() => {
-    getLocation();
-})
+getLocation();
+
+const getDealerLocation = async () => {
+    let result = await dealerGetListService();
+
+    result.data.List.forEach((item) => {
+        const lngLatArr = item.address.LngLat.split(',');
+        markers.value.push({
+            id: item.id,
+            longitude: parseFloat(lngLatArr[0]),
+            latitude: parseFloat(lngLatArr[1]),
+            callout: {
+                content: item.name,
+                color: '#000000',
+                fontSize: 12,
+                borderRadius: 10,
+                padding: 8,
+                display: 'ALWAYS'
+            }
+        });
+    });
+};
+getDealerLocation();
 </script>
 
 <template>
     <view>
         <CustomNavbar />
         <view class="view-port">
-            <map :longitude="longitude" :latitude="latitude" :markers="markers" class="map"></map>
+            <map :longitude="longitude" :latitude="latitude" :markers="markers" class="map" show-compass enable-rotate="true" enable-overlooking="true"></map>
         </view>
     </view>
 </template>

@@ -63,7 +63,7 @@ const naviToChangePwd = ()=>{
         <!-- 头像 -->
         <view class="avatar">
             <view class="avatar-content" @click="onAvatarChange">
-                <image class="image" :src="infoStore.info.avatar ? infoStore.info.avatar : '@/static/default_avatar.jpg'" mode="aspectFill" />
+                <image class="image" :src="infoStore.info.avatar ? infoStore.info.avatar : 'https://sheedrive.oss-cn-shanghai.aliyuncs.com/sys/default_avatar.jpg'" mode="aspectFill" />
                 <text class="text">点击修改头像</text>
             </view>
         </view>

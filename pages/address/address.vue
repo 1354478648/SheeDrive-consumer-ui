@@ -1,44 +1,66 @@
-<script setup lang="ts">
-//
+<script setup>
+import { ref } from 'vue';
+import { userAddressGetListService, userAddressDeleteService } from '@/api/address.js';
+import { useInfoStore } from '@/stores/modules/info.js';
+const infoStore = useInfoStore();
+
+const userAddressData = ref();
+
+const getUserAddressList = async () => {
+    const data = {
+        id: infoStore.info.id
+    };
+    let result = await userAddressGetListService(data);
+
+    userAddressData.value = result.data.addressInfoList;
+};
+getUserAddressList();
+
+const onDelete = async (id) => {
+    await userAddressDeleteService(id);
+    getUserAddressList();
+    uni.showToast({
+        icon: 'checkmarkempty',
+        title: '删除成功'
+    });
+};
 </script>
 
 <template>
     <view class="viewport">
         <!-- 地址列表 -->
         <scroll-view class="scroll-view" scroll-y>
-            <view v-if="true" class="address">
+            <view v-if="userAddressData" class="address">
                 <view class="address-list">
-                    <!-- 收货地址项 -->
-                    <view class="item">
-                        <view class="item-content">
-                            <view class="user">
-                                黑马小王子
-                                <text class="contact">13111111111</text>
-                                <text v-if="true" class="badge">默认</text>
+                    <uni-swipe-action v-for="item in userAddressData" :key="item.id">
+                        <!-- 滑动操作项 -->
+                        <uni-swipe-action-item>
+                            <!-- 默认插槽 -->
+                            <!-- 收货地址项 -->
+                            <view class="item">
+                                <view class="item-content">
+                                    <view class="user">
+                                        {{ 'ID: ' + item.id }}
+                                        <!-- <text class="contact">13111111111</text> -->
+                                        <!-- <text v-if="true" class="badge">默认</text> -->
+                                    </view>
+                                    <view class="locate">{{ item.province + ' ' + item.city + ' ' + item.district + ' ' + item.detail }}</view>
+                                    <navigator class="edit" hover-class="none" :url="`/pages/addressForm/addressForm?id=${item.id}`" open-type="redirect">修改</navigator>
+                                </view>
                             </view>
-                            <view class="locate">广东省 广州市 天河区 黑马程序员</view>
-                            <navigator class="edit" hover-class="none" :url="`/pagesMember/address-form/address-form?id=1`">修改</navigator>
-                        </view>
-                    </view>
-                    <!-- 收货地址项 -->
-                    <view class="item">
-                        <view class="item-content">
-                            <view class="user">
-                                黑马小公主
-                                <text class="contact">13222222222</text>
-                                <text v-if="false" class="badge">默认</text>
-                            </view>
-                            <view class="locate">北京市 北京市 顺义区 黑马程序员</view>
-                            <navigator class="edit" hover-class="none" :url="`/pagesMember/address-form/address-form?id=2`">修改</navigator>
-                        </view>
-                    </view>
+                            <!-- 右侧插槽 -->
+                            <template #right>
+                                <button @click="onDelete(item.id)" class="delete-button">删除</button>
+                            </template>
+                        </uni-swipe-action-item>
+                    </uni-swipe-action>
                 </view>
             </view>
             <view v-else class="blank">没有地址，快去新建一个吧 ~</view>
         </scroll-view>
         <!-- 添加按钮 -->
         <view class="add-btn">
-            <navigator hover-class="none" url="/pagesMember/address-form/address-form">新建地址</navigator>
+            <navigator hover-class="none" url="/pages/addressForm/addressForm" open-type="redirect">新建地址</navigator>
         </view>
     </view>
 </template>
@@ -116,9 +138,9 @@ page {
             padding: 4rpx 10rpx 2rpx 14rpx;
             margin: 2rpx 0 0 10rpx;
             font-size: 26rpx;
-            color: #27ba9b;
+            color: #47dfff;
             border-radius: 6rpx;
-            border: 1rpx solid #27ba9b;
+            border: 1rpx solid #47dfff;
         }
     }
 
@@ -144,6 +166,6 @@ page {
     color: #fff;
     border-radius: 80rpx;
     font-size: 30rpx;
-    background-color: #27ba9b;
+    background-color: #47dfff;
 }
 </style>

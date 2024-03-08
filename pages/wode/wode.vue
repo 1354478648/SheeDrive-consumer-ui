@@ -18,7 +18,7 @@ const havaOrderData = ref(false);
             <!-- 情况1：已登录 -->
             <view class="overview" v-if="infoStore.info">
                 <navigator url="/pages/profile/profile" hover-class="none">
-                    <image class="avatar" mode="aspectFill" :src="infoStore.info.avatar ? infoStore.info.avatar : '@/static/default_avatar.jpg'"></image>
+                    <image class="avatar" mode="aspectFill" :src="infoStore.info.avatar ? infoStore.info.avatar : 'https://sheedrive.oss-cn-shanghai.aliyuncs.com/sys/default_avatar.jpg'"></image>
                 </navigator>
                 <view class="meta">
                     <view class="nickname">{{ infoStore.info.lastName + infoStore.info.firstName }}</view>
