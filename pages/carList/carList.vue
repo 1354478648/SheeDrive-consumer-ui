@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import { onLoad } from '@dcloudio/uni-app';
 import { cardetailGetListService } from '@/api/cardetail.js';
+import { formatPrice } from '@/utils/common.js';
 
 const cardetailListData = ref([]);
 
@@ -26,6 +27,12 @@ const getCarDetailList = async () => {
 
     cardetailListData.value = result.data.List;
 };
+
+const onClick = (id) => {
+    uni.navigateTo({
+        url: `/pages/carDetail/carDetail?id=${id}`
+    });
+};
 </script>
 
 <template>
@@ -33,9 +40,9 @@ const getCarDetailList = async () => {
         v-for="item in cardetailListData"
         :key="item.id"
         :title="item.brand + ' ' + item.model"
-        :sub-title="item.version"
-        :extra="'官方指导价:￥' + item.price"
-        @click="onClick"
+        :sub-title="item.year + '款 ' + item.version"
+        :extra="'官方指导价: ' + formatPrice(item.price)"
+        @click="onClick(item.id)"
         padding="10px 0"
         v-if="!isNull"
     >

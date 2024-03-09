@@ -6,6 +6,7 @@ import {
 } from "@/stores/modules/token.js"
 
 // 请求基地址
+// const baseURL = 'http://192.168.172.243:8000' // 真机调试IP地址
 const baseURL = 'http://localhost:8000'
 
 // 拦截器配置

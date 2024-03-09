@@ -33,8 +33,6 @@ const _sfc_main = {
         type: "wgs84",
         // GPS坐标
         success: (res) => {
-          console.log("当前位置的经度：" + res.longitude);
-          console.log("当前位置的纬度：" + res.latitude);
           longitude.value = res.longitude;
           latitude.value = res.latitude;
           markers.value[0].longitude = res.longitude;

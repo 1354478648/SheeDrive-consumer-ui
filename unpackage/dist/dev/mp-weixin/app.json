@@ -13,7 +13,8 @@
     "pages/changePwd/changePwd",
     "pages/address/address",
     "pages/addressForm/addressForm",
-    "pages/carList/carList"
+    "pages/carList/carList",
+    "pages/carDetail/carDetail"
   ],
   "window": {
     "navigationBarTextStyle": "white",

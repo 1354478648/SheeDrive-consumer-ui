@@ -29,6 +29,7 @@ const naviToYuYue = () => {
         });
     }
 };
+
 </script>
 
 <template>

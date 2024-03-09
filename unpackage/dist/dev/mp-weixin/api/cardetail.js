@@ -6,4 +6,11 @@ const cardetailGetListService = (brand) => {
     url: `/cardetail/list?size=50&brand=${brand}`
   });
 };
+const cardetailGetByIdService = (id) => {
+  return utils_request.http({
+    method: "GET",
+    url: `//cardetail/detail?id=${id}`
+  });
+};
+exports.cardetailGetByIdService = cardetailGetByIdService;
 exports.cardetailGetListService = cardetailGetListService;

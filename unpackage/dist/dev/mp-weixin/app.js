@@ -18,6 +18,7 @@ if (!Math) {
   "./pages/address/address.js";
   "./pages/addressForm/addressForm.js";
   "./pages/carList/carList.js";
+  "./pages/carDetail/carDetail.js";
 }
 const _sfc_main = {};
 function _sfc_render(_ctx, _cache) {

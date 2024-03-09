@@ -8008,6 +8008,14 @@ const pages = [
       navigationBarTextStyle: "black",
       navigationBarTitleText: "汽车列表"
     }
+  },
+  {
+    path: "pages/carDetail/carDetail",
+    style: {
+      navigationBarBackgroundColor: "#fff",
+      navigationBarTextStyle: "black",
+      navigationBarTitleText: "汽车详情"
+    }
   }
 ];
 const globalStyle = {

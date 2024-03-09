@@ -1,6 +1,7 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
 const api_cardetail = require("../../api/cardetail.js");
+const utils_common = require("../../utils/common.js");
 require("../../utils/request.js");
 require("../../stores/modules/info.js");
 require("../../stores/modules/token.js");
@@ -32,6 +33,11 @@ const _sfc_main = {
       }
       cardetailListData.value = result.data.List;
     };
+    const onClick = (id) => {
+      common_vendor.index.navigateTo({
+        url: `/pages/carDetail/carDetail?id=${id}`
+      });
+    };
     return (_ctx, _cache) => {
       return common_vendor.e({
         a: !isNull.value
@@ -41,12 +47,12 @@ const _sfc_main = {
             a: item.image,
             b: common_vendor.t(item.describeInfo),
             c: item.id,
-            d: common_vendor.o(_ctx.onClick, item.id),
+            d: common_vendor.o(($event) => onClick(item.id), item.id),
             e: "5aa73976-0-" + i0,
             f: common_vendor.p({
               title: item.brand + " " + item.model,
-              ["sub-title"]: item.version,
-              extra: "官方指导价:￥" + item.price,
+              ["sub-title"]: item.year + "款 " + item.version,
+              extra: "官方指导价: " + common_vendor.unref(utils_common.formatPrice)(item.price),
               padding: "10px 0"
             })
           };
