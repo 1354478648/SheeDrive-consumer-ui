@@ -19,6 +19,7 @@ if (!Math) {
   "./pages/addressForm/addressForm.js";
   "./pages/carList/carList.js";
   "./pages/carDetail/carDetail.js";
+  "./pages/order/order.js";
 }
 const _sfc_main = {};
 function _sfc_render(_ctx, _cache) {

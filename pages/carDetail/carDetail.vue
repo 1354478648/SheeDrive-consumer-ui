@@ -88,6 +88,12 @@ const getDistance = (lnglat) => {
     const distance = calculateDistance(longitude.value, latitude.value, targetLongitude, targetLatitude);
     return distance.toFixed(2);
 };
+
+const naviToOrder = (dealerId) => {
+    uni.navigateTo({
+        url: `/pages/order/order?carId=${id.value}&dealerId=${dealerId}`
+    });
+};
 </script>
 
 <template>
@@ -145,7 +151,7 @@ const getDistance = (lnglat) => {
                         <text class="dealer-order">已服务 666 人</text>
                     </view>
                     <view class="button-box">
-                        <button class="button">立即预约</button>
+                        <button @click="naviToOrder(item.dealerInfo.id)" class="button">立即预约</button>
                     </view>
                 </view>
             </view>

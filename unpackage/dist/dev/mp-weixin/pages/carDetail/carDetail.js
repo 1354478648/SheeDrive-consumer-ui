@@ -90,6 +90,11 @@ const _sfc_main = {
       const distance = utils_common.calculateDistance(longitude.value, latitude.value, targetLongitude, targetLatitude);
       return distance.toFixed(2);
     };
+    const naviToOrder = (dealerId) => {
+      common_vendor.index.navigateTo({
+        url: `/pages/order/order?carId=${id.value}&dealerId=${dealerId}`
+      });
+    };
     return (_ctx, _cache) => {
       return {
         a: common_vendor.t(cardetailData.value.brand + " " + cardetailData.value.model),
@@ -112,8 +117,9 @@ const _sfc_main = {
             d: common_vendor.t(item.dealerInfo.describeInfo),
             e: item.dealerInfo.avatar,
             f: common_vendor.t(item.dealerInfo.phone),
-            g: item.id,
-            h: "35425daa-1-" + i0
+            g: common_vendor.o(($event) => naviToOrder(item.dealerInfo.id), item.id),
+            h: item.id,
+            i: "35425daa-1-" + i0
           };
         }),
         l: common_vendor.p({

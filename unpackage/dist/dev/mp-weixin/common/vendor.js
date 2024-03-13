@@ -8016,6 +8016,14 @@ const pages = [
       navigationBarTextStyle: "black",
       navigationBarTitleText: "汽车详情"
     }
+  },
+  {
+    path: "pages/order/order",
+    style: {
+      navigationBarBackgroundColor: "#fff",
+      navigationBarTextStyle: "black",
+      navigationBarTitleText: "试驾预定"
+    }
   }
 ];
 const globalStyle = {
