@@ -15,7 +15,8 @@
     "pages/addressForm/addressForm",
     "pages/carList/carList",
     "pages/carDetail/carDetail",
-    "pages/order/order"
+    "pages/order/order",
+    "pages/orderSuccess/orderSuccess"
   ],
   "window": {
     "navigationBarTextStyle": "white",

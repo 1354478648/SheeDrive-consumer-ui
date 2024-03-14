@@ -86,12 +86,21 @@
   display: block;
   height: 46rpx;
 }
-.container .form-container .form-item .code-button,
-.container .form-container .uni-forms-item .code-button {
-  height: 80rpx;
-  color: #fff;
-  font-size: 30rpx;
-  background-color: #47dfff;
+.container .form-container .form-item .picker-input,
+.container .form-container .uni-forms-item .picker-input {
+  flex: 1;
+  height: 46rpx;
+  width: 100rpx;
+  display: flex;
+}
+.container .form-container .form-item .picker-input .address-text,
+.container .form-container .uni-forms-item .picker-input .address-text {
+  white-space: nowrap;
+  overflow-x: scroll;
+  display: flex;
+  /* 使得元素宽度根据内容自动调整 */
+  max-width: 85%;
+  /* 防止元素宽度超过父元素 */
 }
 .container .form-container .form-item .switch,
 .container .form-container .uni-forms-item .switch {
@@ -106,4 +115,12 @@
 .container .form-container .form-item .placeholder,
 .container .form-container .uni-forms-item .placeholder {
   color: #808080;
+}
+.container .button {
+  height: 80rpx;
+  margin: 30rpx 20rpx;
+  color: #fff;
+  border-radius: 80rpx;
+  font-size: 30rpx;
+  background-color: #47dfff;
 }

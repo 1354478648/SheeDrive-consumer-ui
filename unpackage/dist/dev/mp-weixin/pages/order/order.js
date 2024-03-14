@@ -2,9 +2,10 @@
 const common_vendor = require("../../common/vendor.js");
 const api_cardetail = require("../../api/cardetail.js");
 const api_dealer = require("../../api/dealer.js");
-const stores_modules_info = require("../../stores/modules/info.js");
-const api_address = require("../../api/address.js");
 require("../../utils/request.js");
+const stores_modules_info = require("../../stores/modules/info.js");
+const api_order = require("../../api/order.js");
+const api_address = require("../../api/address.js");
 require("../../stores/modules/token.js");
 if (!Array) {
   const _easycom_uni_datetime_picker2 = common_vendor.resolveComponent("uni-datetime-picker");
@@ -47,10 +48,37 @@ const _sfc_main = {
       };
       let result = await api_address.userAddressGetListService(data);
       userAddressData.value = result.data.addressInfoList;
-      console.log(userAddressData.value);
-      addrArr.value = userAddressData.value.map((location) => `${location.province} ${location.city} ${location.district}`);
+      addrArr.value = userAddressData.value.map((location) => `${location.province} ${location.city} ${location.district} ${location.detail}`);
     };
     getUserAddressList();
+    const orderAddData = common_vendor.ref({
+      userId: null,
+      dealerId: null,
+      carId: null,
+      addrId: null,
+      orderTime: ""
+    });
+    const bindPickerChange = (e) => {
+      index.value = e.detail.value;
+    };
+    const onChange = (e) => {
+      orderAddData.value.orderTime = e;
+    };
+    const onOrder = async () => {
+      orderAddData.value.userId = infoStore.info.id;
+      orderAddData.value.dealerId = dealerId.value;
+      orderAddData.value.carId = carId.value;
+      orderAddData.value.addrId = userAddressData.value[index.value].id;
+      let result = await api_order.orderAddService(orderAddData.value);
+      let orderId = result.data.orderInfo.id;
+      common_vendor.index.redirectTo({
+        url: `/pages/orderSuccess/orderSuccess?orderId=${orderId}`
+      });
+      common_vendor.index.showToast({
+        icon: "checkmarkempty",
+        title: "预约成功！"
+      });
+    };
     return (_ctx, _cache) => {
       return {
         a: cardetailData.value.image,
@@ -59,10 +87,10 @@ const _sfc_main = {
         d: dealerData.value.address.Province + " " + dealerData.value.address.City + " " + dealerData.value.address.District + " " + dealerData.value.address.Detail,
         e: common_vendor.unref(infoStore).info.phone,
         f: common_vendor.t(addrArr.value[index.value]),
-        g: common_vendor.o((...args) => _ctx.bindPickerChange && _ctx.bindPickerChange(...args)),
+        g: common_vendor.o(bindPickerChange),
         h: index.value,
-        i: userAddressData.value,
-        j: common_vendor.o(_ctx.change),
+        i: addrArr.value,
+        j: common_vendor.o(onChange),
         k: common_vendor.p({
           type: "date",
           start: /* @__PURE__ */ new Date(),
@@ -70,7 +98,7 @@ const _sfc_main = {
           ["clear-icon"]: true,
           border: false
         }),
-        l: common_vendor.o((...args) => _ctx.onOrder && _ctx.onOrder(...args)),
+        l: common_vendor.o(onOrder),
         m: common_vendor.p({
           isFull: true
         })

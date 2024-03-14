@@ -18,7 +18,11 @@ const havaOrderData = ref(false);
             <!-- 情况1：已登录 -->
             <view class="overview" v-if="infoStore.info">
                 <navigator url="/pages/profile/profile" hover-class="none">
-                    <image class="avatar" mode="aspectFill" :src="infoStore.info.avatar ? infoStore.info.avatar : 'https://sheedrive.oss-cn-shanghai.aliyuncs.com/sys/default_avatar.jpg'"></image>
+                    <image
+                        class="avatar"
+                        mode="aspectFill"
+                        :src="infoStore.info.avatar ? infoStore.info.avatar : 'https://sheedrive.oss-cn-shanghai.aliyuncs.com/sys/default_avatar.jpg'"
+                    ></image>
                 </navigator>
                 <view class="meta">
                     <view class="nickname">{{ infoStore.info.lastName + infoStore.info.firstName }}</view>
@@ -30,11 +34,7 @@ const havaOrderData = ref(false);
             <!-- 情况2：未登录 -->
             <view class="overview" v-else>
                 <navigator url="/pages/login/login" hover-class="none">
-                    <image
-                        class="avatar gray"
-                        mode="aspectFill"
-                        src='@/static/default_avatar.jpg'
-                    ></image>
+                    <image class="avatar gray" mode="aspectFill" src="@/static/default_avatar.jpg"></image>
                 </navigator>
                 <view class="meta">
                     <navigator url="/pages/login/login" hover-class="none" class="nickname">未登录</navigator>
@@ -50,6 +50,24 @@ const havaOrderData = ref(false);
             <view class="title">
                 最近订单
                 <navigator class="navigator" url="/pagesOrder/list/list?type=0" hover-class="none">查看全部订单</navigator>
+            </view>
+            <view class="order-container">
+                <view class="order-title">
+                    <text class="order-id">订单号：123456</text>
+                    <text class="order-status">状态</text>
+                </view>
+                <view class="image-container">
+                    <image src="https://sheedrive.oss-cn-shanghai.aliyuncs.com/sys/car_aodiA4L.jpg"></image>
+                    <view class="order-info">
+                        <text>汽车名</text>
+                        <text>经销商名</text>
+                        <text>预定时间</text>
+                    </view>
+                </view>
+                <view class="button-container">
+                    <button class="detail-button">查看详情</button>
+                    <button class="comment-button">去评价</button>
+                </view>
             </view>
             <view class="section">
                 <view v-if="!havaOrderData" class="nodata">
@@ -163,6 +181,67 @@ page {
             font-size: 24rpx;
             color: #939393;
             float: right;
+        }
+    }
+
+    .order-container {
+        display: flex;
+        flex-direction: column;
+        margin-top: 20rpx;
+		border-bottom: 1px solid #ccc;
+        .order-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 32rpx;
+            .order-id {
+                font-weight: bold;
+            }
+            .order-status {
+                margin-left: auto;
+            }
+        }
+        .image-container {
+            display: flex;
+            align-items: center; // 垂直居中
+            margin-top: 20rpx;
+            image {
+                width: 40%; // 控制图片大小
+                height: 200rpx;
+            }
+            .order-info {
+                display: flex;
+                flex-direction: column;
+                margin-left: 10px; // 控制文字和图片之间的间距
+                text {
+                    display: block; // 每个信息换行显示
+                    margin: 15rpx;
+                    font-size: 24rpx;
+                }
+            }
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: auto; // 将按钮容器推到底部
+            .detail-button {
+                height: 80rpx;
+                margin: 30rpx 20rpx;
+                color: #47dfff;
+                border-radius: 80rpx;
+                font-size: 28rpx;
+                border: 2rpx solid #47dfff; // 设置边框
+                background-color: transparent; // 设置背景为透明色
+            }
+            .comment-button {
+                height: 80rpx;
+                margin: 30rpx 20rpx;
+                color: #fff;
+                border-radius: 80rpx;
+                font-size: 28rpx;
+                background-color: #47dfff;
+            }
         }
     }
 

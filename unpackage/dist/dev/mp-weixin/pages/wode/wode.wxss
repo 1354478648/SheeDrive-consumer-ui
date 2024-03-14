@@ -115,6 +115,65 @@ page {
   color: #939393;
   float: right;
 }
+.orders .order-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20rpx;
+  border-bottom: 1px solid #ccc;
+}
+.orders .order-container .order-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 32rpx;
+}
+.orders .order-container .order-title .order-id {
+  font-weight: bold;
+}
+.orders .order-container .order-title .order-status {
+  margin-left: auto;
+}
+.orders .order-container .image-container {
+  display: flex;
+  align-items: center;
+  margin-top: 20rpx;
+}
+.orders .order-container .image-container image {
+  width: 40%;
+  height: 200rpx;
+}
+.orders .order-container .image-container .order-info {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+.orders .order-container .image-container .order-info text {
+  display: block;
+  margin: 15rpx;
+  font-size: 24rpx;
+}
+.orders .order-container .button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: auto;
+}
+.orders .order-container .button-container .detail-button {
+  height: 80rpx;
+  margin: 30rpx 20rpx;
+  color: #47dfff;
+  border-radius: 80rpx;
+  font-size: 28rpx;
+  border: 2rpx solid #47dfff;
+  background-color: transparent;
+}
+.orders .order-container .button-container .comment-button {
+  height: 80rpx;
+  margin: 30rpx 20rpx;
+  color: #fff;
+  border-radius: 80rpx;
+  font-size: 28rpx;
+  background-color: #47dfff;
+}
 .orders .section {
   width: 100%;
   display: flex;

@@ -20,6 +20,7 @@ if (!Math) {
   "./pages/carList/carList.js";
   "./pages/carDetail/carDetail.js";
   "./pages/order/order.js";
+  "./pages/orderSuccess/orderSuccess.js";
 }
 const _sfc_main = {};
 function _sfc_render(_ctx, _cache) {

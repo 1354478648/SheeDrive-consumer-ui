@@ -8024,6 +8024,14 @@ const pages = [
       navigationBarTextStyle: "black",
       navigationBarTitleText: "试驾预定"
     }
+  },
+  {
+    path: "pages/orderSuccess/orderSuccess",
+    style: {
+      navigationBarBackgroundColor: "#fff",
+      navigationBarTextStyle: "black",
+      navigationBarTitleText: "预约结果"
+    }
   }
 ];
 const globalStyle = {

@@ -3,7 +3,9 @@ import { ref } from 'vue';
 import { onLoad } from '@dcloudio/uni-app';
 import { cardetailGetByIdService } from '@/api/cardetail.js';
 import { dealerGetDetailService } from '@/api/dealer.js';
+import { smsSendCode } from '@/api/sms.js';
 import { useInfoStore } from '@/stores/modules/info.js';
+import { orderAddService } from '@/api/order.js';
 const infoStore = useInfoStore();
 import { userAddressGetListService } from '@/api/address.js';
 
@@ -29,8 +31,8 @@ const stockGetList = async () => {
 };
 
 const userAddressData = ref();
-const addrArr = ref([])
-const index = ref(0)
+const addrArr = ref([]);
+const index = ref(0);
 const getUserAddressList = async () => {
     const data = {
         id: infoStore.info.id
@@ -38,10 +40,42 @@ const getUserAddressList = async () => {
     let result = await userAddressGetListService(data);
 
     userAddressData.value = result.data.addressInfoList;
-    console.log(userAddressData.value);
-	addrArr.value = userAddressData.value.map(location => `${location.province} ${location.city} ${location.district}`);
+    addrArr.value = userAddressData.value.map((location) => `${location.province} ${location.city} ${location.district} ${location.detail}`);
 };
 getUserAddressList();
+
+const orderAddData = ref({
+    userId: null,
+    dealerId: null,
+    carId: null,
+    addrId: null,
+    orderTime: ''
+});
+
+const bindPickerChange = (e) => {
+    index.value = e.detail.value;
+};
+
+const onChange = (e) => {
+    orderAddData.value.orderTime = e;
+};
+
+const onOrder = async () => {
+    orderAddData.value.userId = infoStore.info.id;
+    orderAddData.value.dealerId = dealerId.value;
+    orderAddData.value.carId = carId.value;
+    orderAddData.value.addrId = userAddressData.value[index.value].id;
+
+    let result = await orderAddService(orderAddData.value);
+	let orderId = result.data.orderInfo.id
+    uni.redirectTo({
+        url: `/pages/orderSuccess/orderSuccess?orderId=${orderId}`
+    });
+    uni.showToast({
+        icon: 'checkmarkempty',
+        title: '预约成功！'
+    });
+};
 </script>
 
 <template>
@@ -81,14 +115,20 @@ getUserAddressList();
                     <input :value="infoStore.info.phone" type="text" class="input" placeholder="请填写联系电话" disabled="true" />
                 </view>
                 <view class="form-item">
-                    <text class="label">您的地址</text>
-                    <picker @change="bindPickerChange" :value="index" :range="userAddressData">
-                        <view class="uni-input">{{ addrArr[index] }}</view>
+                    <text class="label">
+                        <text style="color: red">*</text>
+                        您的地址
+                    </text>
+                    <picker @change="bindPickerChange" :value="index" :range="addrArr" class="picker-input">
+                        <view class="address-text">{{ addrArr[index] }}</view>
                     </picker>
                 </view>
                 <view class="form-item">
-                    <text class="label">预约时间</text>
-                    <uni-datetime-picker @change="change" type="date" :start="new Date()" return-type="string" clear-icon :border="false" />
+                    <text class="label">
+                        <text style="color: red">*</text>
+                        预约时间
+                    </text>
+                    <uni-datetime-picker @change="onChange" type="date" :start="new Date()" return-type="string" clear-icon :border="false" />
                 </view>
             </form>
             <button class="button" @click="onOrder">预约试驾</button>
@@ -162,13 +202,18 @@ getUserAddressList();
                 height: 46rpx;
             }
 
-            .code-button {
-                height: 80rpx;
-                // margin: 30rpx 20rpx;
-                color: #fff;
-                // border-radius: 80rpx;
-                font-size: 30rpx;
-                background-color: #47dfff;
+            .picker-input {
+                flex: 1;
+                height: 46rpx;
+                width: 100rpx;
+                display: flex;
+
+                .address-text {
+                    white-space: nowrap;
+                    overflow-x: scroll;
+                    display: flex; /* 使得元素宽度根据内容自动调整 */
+                    max-width: 85%; /* 防止元素宽度超过父元素 */
+                }
             }
 
             .switch {
@@ -185,6 +230,15 @@ getUserAddressList();
                 color: #808080;
             }
         }
+    }
+
+    .button {
+        height: 80rpx;
+        margin: 30rpx 20rpx;
+        color: #fff;
+        border-radius: 80rpx;
+        font-size: 30rpx;
+        background-color: #47dfff;
     }
 }
 </style>
