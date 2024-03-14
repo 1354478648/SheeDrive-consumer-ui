@@ -28,6 +28,17 @@ const _sfc_main = {
         });
       }
     };
+    const naviToOrderList = () => {
+      if (infoStore.info) {
+        common_vendor.index.navigateTo({
+          url: "/pages/orderList/orderList"
+        });
+      } else {
+        common_vendor.index.navigateTo({
+          url: "/pages/login/login"
+        });
+      }
+    };
     const naviToAddress = () => {
       if (infoStore.info) {
         common_vendor.index.navigateTo({
@@ -71,20 +82,22 @@ const _sfc_main = {
           title: "个人资料",
           link: true
         }),
-        c: common_vendor.p({
-          title: "我的订单"
+        c: common_vendor.o(naviToOrderList),
+        d: common_vendor.p({
+          title: "我的订单",
+          link: true
         }),
-        d: common_vendor.o(naviToAddress),
-        e: common_vendor.p({
+        e: common_vendor.o(naviToAddress),
+        f: common_vendor.p({
           title: "我的地址簿",
           link: true
         }),
-        f: common_vendor.p({
+        g: common_vendor.p({
           title: "用户协议与隐私条款",
           link: true,
           to: "/pages/agreement/agreement"
         }),
-        g: common_vendor.o(logout)
+        h: common_vendor.o(logout)
       };
     };
   }

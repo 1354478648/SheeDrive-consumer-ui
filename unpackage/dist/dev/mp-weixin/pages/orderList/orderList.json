@@ -1,7 +1,7 @@
 {
-  "navigationStyle": "custom",
-  "navigationBarTextStyle": "white",
-  "navigationBarTitleText": "我的",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "我的订单",
   "usingComponents": {
     "uni-icons": "../../uni_modules/uni-icons/components/uni-icons/uni-icons",
     "uni-steps": "../../uni_modules/uni-steps/components/uni-steps/uni-steps"

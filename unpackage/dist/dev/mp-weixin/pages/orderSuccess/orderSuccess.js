@@ -21,7 +21,7 @@ const _sfc_main = {
           type: "hand-up",
           size: "32"
         }),
-        b: `/pagesOrder/detail/detail`,
+        b: `/pages/orderDetail/orderDetail?orderId=${orderId.value}`,
         c: common_vendor.o((...args) => _ctx.onScrolltolower && _ctx.onScrolltolower(...args))
       };
     };

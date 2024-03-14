@@ -17,7 +17,7 @@ onLoad((options) => {
             <view class="status">预约成功</view>
             <view class="buttons">
                 <navigator hover-class="none" class="button navigator" url="/pages/faxian/faxian" open-type="switchTab">返回首页</navigator>
-                <navigator hover-class="none" class="button navigator" :url="`/pagesOrder/detail/detail`" open-type="redirect">查看订单</navigator>
+                <navigator hover-class="none" class="button navigator" :url="`/pages/orderDetail/orderDetail?orderId=${orderId}`" open-type="redirect">查看订单</navigator>
             </view>
         </view>
     </scroll-view>

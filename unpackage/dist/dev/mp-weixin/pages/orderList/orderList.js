@@ -1,6 +1,5 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
-const common_assets = require("../../common/assets.js");
 const stores_modules_info = require("../../stores/modules/info.js");
 const api_order = require("../../api/order.js");
 require("../../utils/request.js");
@@ -16,21 +15,21 @@ if (!Math) {
   (_easycom_uni_icons + _easycom_uni_steps)();
 }
 const _sfc_main = {
-  __name: "wode",
+  __name: "orderList",
   setup(__props) {
     const infoStore = stores_modules_info.useInfoStore();
-    const { safeAreaInsets } = common_vendor.index.getSystemInfoSync();
+    common_vendor.index.getSystemInfoSync();
     const havaOrderData = common_vendor.ref(false);
     const orderList = common_vendor.ref([]);
-    const orderGetByIdInWoDe = async () => {
-      if (infoStore.info && infoStore.info.hasOwnProperty("id")) {
-        let result = await api_order.orderGetByUserIdInWoDeService(infoStore.info.id);
+    const orderGetById = async () => {
+      if (infoStore.info.hasOwnProperty("id")) {
+        let result = await api_order.orderGetByUserIdService(infoStore.info.id);
         orderList.value = result.data.List;
         havaOrderData.value = true;
       }
     };
     common_vendor.onShow(() => {
-      orderGetByIdInWoDe();
+      orderGetById();
     });
     const statusOptions = [
       { value: -1, label: "异常" },
@@ -76,34 +75,24 @@ const _sfc_main = {
       });
     };
     return (_ctx, _cache) => {
-      var _a;
       return common_vendor.e({
-        a: common_vendor.unref(infoStore).info
-      }, common_vendor.unref(infoStore).info ? {
-        b: common_vendor.unref(infoStore).info.avatar ? common_vendor.unref(infoStore).info.avatar : "https://sheedrive.oss-cn-shanghai.aliyuncs.com/sys/default_avatar.jpg",
-        c: common_vendor.t(common_vendor.unref(infoStore).info.lastName + common_vendor.unref(infoStore).info.firstName)
-      } : {
-        d: common_assets._imports_0
-      }, {
-        e: ((_a = common_vendor.unref(safeAreaInsets)) == null ? void 0 : _a.top) + "px",
-        f: common_vendor.f(orderList.value, (item, k0, i0) => {
+        a: common_vendor.f(orderList.value, (item, k0, i0) => {
           return common_vendor.e({
             a: common_vendor.t(item.id),
             b: common_vendor.t(getStatusText(item.status)),
-            c: item.carDetailInfo.image,
-            d: common_vendor.t(item.carDetailInfo.brand + " " + item.carDetailInfo.model + " " + item.carDetailInfo.version),
-            e: common_vendor.t(item.dealerInfo.name),
-            f: common_vendor.t(item.orderTime.substring(0, 10)),
-            g: item.status == 0
+            c: common_vendor.t(item.carDetailInfo.brand + " " + item.carDetailInfo.model + " " + item.carDetailInfo.version),
+            d: common_vendor.t(item.dealerInfo.name),
+            e: common_vendor.t(item.orderTime.substring(0, 10)),
+            f: item.status == 0
           }, item.status == 0 ? {
-            h: "56162f02-0-" + i0,
-            i: common_vendor.p({
+            g: "67aeecf9-0-" + i0,
+            h: common_vendor.p({
               type: "closeempty",
               size: "24"
             })
           } : {
-            j: "56162f02-1-" + i0,
-            k: common_vendor.p({
+            i: "67aeecf9-1-" + i0,
+            j: common_vendor.p({
               direction: "row",
               options: statusList.value,
               active: item.status - 1,
@@ -111,16 +100,16 @@ const _sfc_main = {
               s: true
             })
           }, {
-            l: common_vendor.o(($event) => naviToOrderDetail(item.id), item.id),
-            m: item.status == 6
+            k: common_vendor.o(($event) => naviToOrderDetail(item.id), item.id),
+            l: item.status == 6
           }, item.status == 6 ? {} : {}, {
-            n: item.id
+            m: item.id
           });
         }),
-        g: !havaOrderData.value
+        b: !havaOrderData.value
       }, !havaOrderData.value ? {} : {});
     };
   }
 };
-const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "D:/文档/大学文档/A毕业设计/小羊试驾/SheeDrive-consumer-ui/pages/wode/wode.vue"]]);
+const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "D:/文档/大学文档/A毕业设计/小羊试驾/SheeDrive-consumer-ui/pages/orderList/orderList.vue"]]);
 wx.createPage(MiniProgramPage);

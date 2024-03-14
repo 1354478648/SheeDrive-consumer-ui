@@ -131,6 +131,22 @@
 				"navigationBarTextStyle": "black",
 				"navigationBarTitleText": "预约结果"
 			}
+		},
+		{
+			"path": "pages/orderDetail/orderDetail",
+			"style": {
+				"navigationBarBackgroundColor": "#fff",
+				"navigationBarTextStyle": "black",
+				"navigationBarTitleText": "订单详情"
+			}
+		},
+		{
+			"path": "pages/orderList/orderList",
+			"style": {
+				"navigationBarBackgroundColor": "#fff",
+				"navigationBarTextStyle": "black",
+				"navigationBarTitleText": "我的订单"
+			}
 		}
 	],
 	"globalStyle": {

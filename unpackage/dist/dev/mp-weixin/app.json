@@ -16,7 +16,9 @@
     "pages/carList/carList",
     "pages/carDetail/carDetail",
     "pages/order/order",
-    "pages/orderSuccess/orderSuccess"
+    "pages/orderSuccess/orderSuccess",
+    "pages/orderDetail/orderDetail",
+    "pages/orderList/orderList"
   ],
   "window": {
     "navigationBarTextStyle": "white",

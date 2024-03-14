@@ -21,6 +21,8 @@ if (!Math) {
   "./pages/carDetail/carDetail.js";
   "./pages/order/order.js";
   "./pages/orderSuccess/orderSuccess.js";
+  "./pages/orderDetail/orderDetail.js";
+  "./pages/orderList/orderList.js";
 }
 const _sfc_main = {};
 function _sfc_render(_ctx, _cache) {

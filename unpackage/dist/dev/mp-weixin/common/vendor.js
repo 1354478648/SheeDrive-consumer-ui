@@ -7899,6 +7899,7 @@ var src_default = createPersistedState();
 const createHook = (lifecycle) => (hook, target = getCurrentInstance()) => {
   !isInSSRComponentSetup && injectHook(lifecycle, hook, target);
 };
+const onShow = /* @__PURE__ */ createHook(ON_SHOW);
 const onLoad = /* @__PURE__ */ createHook(ON_LOAD);
 const pages = [
   {
@@ -8031,6 +8032,22 @@ const pages = [
       navigationBarBackgroundColor: "#fff",
       navigationBarTextStyle: "black",
       navigationBarTitleText: "预约结果"
+    }
+  },
+  {
+    path: "pages/orderDetail/orderDetail",
+    style: {
+      navigationBarBackgroundColor: "#fff",
+      navigationBarTextStyle: "black",
+      navigationBarTitleText: "订单详情"
+    }
+  },
+  {
+    path: "pages/orderList/orderList",
+    style: {
+      navigationBarBackgroundColor: "#fff",
+      navigationBarTextStyle: "black",
+      navigationBarTitleText: "我的订单"
     }
   }
 ];
@@ -10771,6 +10788,7 @@ exports.initVueI18n = initVueI18n;
 exports.n = n$1;
 exports.o = o$1;
 exports.onLoad = onLoad;
+exports.onShow = onShow;
 exports.p = p$1;
 exports.r = r$1;
 exports.ref = ref;

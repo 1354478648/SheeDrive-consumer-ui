@@ -1,8 +1,8 @@
 <script setup>
-import { ref, watch } from 'vue';
+import { ref } from 'vue';
 import { onShow } from '@dcloudio/uni-app';
 import { useInfoStore } from '@/stores/modules/info.js';
-import { orderGetByUserIdInWoDeService } from '@/api/order.js';
+import { orderGetByUserIdService } from '@/api/order.js';
 const infoStore = useInfoStore();
 
 // 获取屏幕边界到安全区域距离
@@ -12,15 +12,15 @@ const { safeAreaInsets } = uni.getSystemInfoSync();
 const havaOrderData = ref(false);
 
 const orderList = ref([]);
-const orderGetByIdInWoDe = async () => {
-    if (infoStore.info && infoStore.info.hasOwnProperty('id')) {
-        let result = await orderGetByUserIdInWoDeService(infoStore.info.id);
+const orderGetById = async () => {
+    if (infoStore.info.hasOwnProperty('id')) {
+        let result = await orderGetByUserIdService(infoStore.info.id);
         orderList.value = result.data.List;
         havaOrderData.value = true;
     }
 };
 onShow(() => {
-    orderGetByIdInWoDe();
+    orderGetById();
 });
 
 const statusOptions = [
@@ -72,51 +72,14 @@ const naviToOrderDetail = (orderId) => {
 
 <template>
     <scroll-view class="viewport" scroll-y enable-back-to-top>
-        <!-- 个人资料 -->
-        <view class="profile" :style="{ paddingTop: safeAreaInsets?.top + 'px' }">
-            <!-- 情况1：已登录 -->
-            <view class="overview" v-if="infoStore.info">
-                <navigator url="/pages/profile/profile" hover-class="none">
-                    <image
-                        class="avatar"
-                        mode="aspectFill"
-                        :src="infoStore.info.avatar ? infoStore.info.avatar : 'https://sheedrive.oss-cn-shanghai.aliyuncs.com/sys/default_avatar.jpg'"
-                    ></image>
-                </navigator>
-                <view class="meta">
-                    <view class="nickname">{{ infoStore.info.lastName + infoStore.info.firstName }}</view>
-                    <navigator class="extra" url="/pages/profile/profile" hover-class="none">
-                        <text class="update">修改头像</text>
-                    </navigator>
-                </view>
-            </view>
-            <!-- 情况2：未登录 -->
-            <view class="overview" v-else>
-                <navigator url="/pages/login/login" hover-class="none">
-                    <image class="avatar gray" mode="aspectFill" src="@/static/default_avatar.jpg"></image>
-                </navigator>
-                <view class="meta">
-                    <navigator url="/pages/login/login" hover-class="none" class="nickname">未登录</navigator>
-                    <view class="extra">
-                        <text class="tips">点击登录账号</text>
-                    </view>
-                </view>
-            </view>
-            <navigator class="settings" url="/pages/settings/settings" hover-class="none">设置</navigator>
-        </view>
-        <!-- 我的订单 -->
         <view class="orders">
-            <view class="title">
-                最近订单
-                <navigator class="navigator" url="/pages/orderList/orderList" hover-class="none">查看全部订单</navigator>
-            </view>
             <view v-for="item in orderList" :key="item.id" class="order-container">
                 <view class="order-title">
                     <text class="order-id">订单号：{{ item.id }}</text>
                     <text class="order-status">{{ getStatusText(item.status) }}</text>
                 </view>
                 <view class="image-container">
-                    <image :src="item.carDetailInfo.image"></image>
+                    <image src="https://sheedrive.oss-cn-shanghai.aliyuncs.com/sys/car_aodiA4L.jpg"></image>
                     <view class="order-info">
                         <text>{{ item.carDetailInfo.brand + ' ' + item.carDetailInfo.model + ' ' + item.carDetailInfo.version }}</text>
                         <text>{{ item.dealerInfo.name }}</text>
@@ -158,78 +121,6 @@ page {
 
 .viewport {
     height: 100%;
-    background-repeat: no-repeat;
-    background-image: url('https://sheedrive.oss-cn-shanghai.aliyuncs.com/sys/center_bg.png');
-    background-size: 100% auto;
-}
-
-/* 用户信息 */
-.profile {
-    margin-top: 20rpx;
-    position: relative;
-
-    .overview {
-        display: flex;
-        height: 120rpx;
-        padding: 0 36rpx;
-        color: #fff;
-    }
-
-    .avatar {
-        width: 120rpx;
-        height: 120rpx;
-        border-radius: 50%;
-        background-color: #eee;
-    }
-
-    .gray {
-        filter: grayscale(100%);
-    }
-
-    .meta {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-        line-height: 30rpx;
-        padding: 16rpx 0;
-        margin-left: 20rpx;
-    }
-
-    .nickname {
-        max-width: 350rpx;
-        margin-bottom: 16rpx;
-        font-size: 30rpx;
-
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-
-    .extra {
-        display: flex;
-        font-size: 20rpx;
-    }
-
-    .tips {
-        font-size: 22rpx;
-    }
-
-    .update {
-        padding: 3rpx 10rpx 1rpx;
-        color: rgba(255, 255, 255, 0.8);
-        border: 1rpx solid rgba(255, 255, 255, 0.8);
-        margin-right: 10rpx;
-        border-radius: 30rpx;
-    }
-
-    .settings {
-        position: absolute;
-        bottom: 0;
-        right: 40rpx;
-        font-size: 30rpx;
-        color: #fff;
-    }
 }
 
 /* 我的订单 */
@@ -237,7 +128,7 @@ page {
     position: relative;
     z-index: 99;
     padding: 30rpx;
-    margin: 50rpx 20rpx 0;
+    margin: 20rpx 20rpx 0;
     background-color: #fff;
     border-radius: 10rpx;
     box-shadow: 0 4rpx 6rpx rgba(240, 240, 240, 0.6);

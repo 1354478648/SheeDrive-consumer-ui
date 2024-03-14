@@ -7,11 +7,25 @@ const orderAddService = (data) => {
     data
   });
 };
-const orderGetByIdInWoDeService = (userId) => {
+const orderGetByUserIdInWoDeService = (userId) => {
   return utils_request.http({
     method: "GET",
     url: `/order/getByUserId?size=2&userId=${userId}`
   });
 };
+const orderGetByUserIdService = (userId) => {
+  return utils_request.http({
+    method: "GET",
+    url: `/order/getByUserId?size=50&userId=${userId}`
+  });
+};
+const orderGetByIdService = (carId) => {
+  return utils_request.http({
+    method: "GET",
+    url: `/order/detail?id=${carId}`
+  });
+};
 exports.orderAddService = orderAddService;
-exports.orderGetByIdInWoDeService = orderGetByIdInWoDeService;
+exports.orderGetByIdService = orderGetByIdService;
+exports.orderGetByUserIdInWoDeService = orderGetByUserIdInWoDeService;
+exports.orderGetByUserIdService = orderGetByUserIdService;

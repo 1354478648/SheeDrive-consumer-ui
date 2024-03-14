@@ -16,6 +16,18 @@ const naviToProfile = () => {
     }
 };
 
+const naviToOrderList = ()=>{
+	if (infoStore.info) {
+	    uni.navigateTo({
+	        url: '/pages/orderList/orderList'
+	    });
+	} else {
+	    uni.navigateTo({
+	        url: '/pages/login/login'
+	    });
+	}
+}
+
 const naviToAddress = () => {
     if (infoStore.info) {
         uni.navigateTo({
@@ -61,7 +73,7 @@ const logout = () => {
     <view class="content">
         <uni-list>
             <uni-list-item title="个人资料" link @click="naviToProfile"></uni-list-item>
-            <uni-list-item title="我的订单"></uni-list-item>
+            <uni-list-item title="我的订单" link @click="naviToOrderList"></uni-list-item>
             <uni-list-item title="我的地址簿" link @click="naviToAddress"></uni-list-item>
             <uni-list-item title="用户协议与隐私条款" link to="/pages/agreement/agreement"></uni-list-item>
         </uni-list>
