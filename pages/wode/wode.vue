@@ -2,6 +2,7 @@
 import { ref, watch } from 'vue';
 import { onShow } from '@dcloudio/uni-app';
 import { useInfoStore } from '@/stores/modules/info.js';
+import { orderGetByIdInWoDeService } from '@/api/order.js';
 const infoStore = useInfoStore();
 
 // 获取屏幕边界到安全区域距离
@@ -9,6 +10,58 @@ const { safeAreaInsets } = uni.getSystemInfoSync();
 
 // 有无订单数据
 const havaOrderData = ref(false);
+
+const orderList = ref([]);
+const orderGetByIdInWoDe = async () => {
+    console.log('函数执行');
+
+    if (infoStore.info.id) {
+        let result = await orderGetByIdInWoDeService(infoStore.info.id);
+        orderList.value = result.data.List;
+        havaOrderData.value = true;
+    }
+};
+orderGetByIdInWoDe();
+
+const statusOptions = [
+    { value: -1, label: '异常' },
+    { value: 0, label: '取消' },
+    { value: 1, label: '未确认' },
+    { value: 2, label: '已确认' },
+    { value: 3, label: '签署协议' },
+    { value: 4, label: '试驾中' },
+    { value: 5, label: '试驾结束' },
+    { value: 6, label: '待评价' },
+    { value: 7, label: '已评价' }
+];
+const getStatusText = (status) => {
+    const statusOption = statusOptions.find((option) => option.value === status);
+    return statusOption ? statusOption.label : '未知状态';
+};
+
+const statusList = ref([
+    {
+        title: '未确认'
+    },
+    {
+        title: '已确认'
+    },
+    {
+        title: '签署协议'
+    },
+    {
+        title: '试驾中'
+    },
+    {
+        title: '试驾结束'
+    },
+    {
+        title: '待评价'
+    },
+    {
+        title: '已评价'
+    }
+]);
 </script>
 
 <template>
@@ -51,24 +104,28 @@ const havaOrderData = ref(false);
                 最近订单
                 <navigator class="navigator" url="/pagesOrder/list/list?type=0" hover-class="none">查看全部订单</navigator>
             </view>
-            <view class="order-container">
+            <view v-for="item in orderList" :key="item.id" class="order-container">
                 <view class="order-title">
-                    <text class="order-id">订单号：123456</text>
-                    <text class="order-status">状态</text>
+                    <text class="order-id">订单号：{{ item.id }}</text>
+                    <text class="order-status">{{ getStatusText(item.status) }}</text>
                 </view>
                 <view class="image-container">
                     <image src="https://sheedrive.oss-cn-shanghai.aliyuncs.com/sys/car_aodiA4L.jpg"></image>
                     <view class="order-info">
-                        <text>汽车名</text>
-                        <text>经销商名</text>
-                        <text>预定时间</text>
+                        <text>{{ item.carDetailInfo.brand + ' ' + item.carDetailInfo.model + ' ' + item.carDetailInfo.version }}</text>
+                        <text>{{ item.dealerInfo.name }}</text>
+                        <text>{{ item.orderTime.substring(0, 10) }}</text>
                     </view>
+                </view>
+                <view class="steps-container">
+                    <uni-steps direction="row" :options="statusList" :active="item.status - 1" active-color="#47dfff" s />
                 </view>
                 <view class="button-container">
                     <button class="detail-button">查看详情</button>
-                    <button class="comment-button">去评价</button>
+                    <button class="comment-button" v-if="item.status == 6">去评价</button>
                 </view>
             </view>
+
             <view class="section">
                 <view v-if="!havaOrderData" class="nodata">
                     <text class="nodata-text">没有数据，快去试驾吧 ~</text>
@@ -188,12 +245,12 @@ page {
         display: flex;
         flex-direction: column;
         margin-top: 20rpx;
-		border-bottom: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
         .order-title {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 32rpx;
+            font-size: 24rpx;
             .order-id {
                 font-weight: bold;
             }
@@ -219,6 +276,10 @@ page {
                     font-size: 24rpx;
                 }
             }
+        }
+
+        .steps-container {
+            margin-top: 20rpx;
         }
 
         .button-container {

@@ -125,7 +125,7 @@ page {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 32rpx;
+  font-size: 24rpx;
 }
 .orders .order-container .order-title .order-id {
   font-weight: bold;
@@ -151,6 +151,9 @@ page {
   display: block;
   margin: 15rpx;
   font-size: 24rpx;
+}
+.orders .order-container .steps-container {
+  margin-top: 20rpx;
 }
 .orders .order-container .button-container {
   display: flex;

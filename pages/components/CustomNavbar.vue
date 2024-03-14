@@ -13,7 +13,7 @@ const { safeAreaInsets } = uni.getSystemInfoSync()
 		<!-- 搜索条 -->
 		<view class="search">
 			<uni-icons type="search" size="15" color="white"></uni-icons>
-			<text style="margin-left: 10rpx;">搜索车辆</text>
+			<text style="margin-left: 10rpx;">搜索经销商</text>
 		</view>
 	</view>
 </template>

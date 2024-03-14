@@ -7,7 +7,6 @@ onLoad((options) => {
     orderId.value = options.orderId;
 });
 
-
 </script>
 
 <template>

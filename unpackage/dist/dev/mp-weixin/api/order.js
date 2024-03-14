@@ -7,4 +7,11 @@ const orderAddService = (data) => {
     data
   });
 };
+const orderGetByIdInWoDeService = (userId) => {
+  return utils_request.http({
+    method: "GET",
+    url: `/order/getByUserId?size=2&userId=${userId}`
+  });
+};
 exports.orderAddService = orderAddService;
+exports.orderGetByIdInWoDeService = orderGetByIdInWoDeService;
