@@ -68,6 +68,12 @@ const naviToOrderDetail = (orderId) => {
         url: `/pages/orderDetail/orderDetail?orderId=${orderId}`
     });
 };
+
+const naviToComment = (orderId) => {
+    uni.navigateTo({
+        url: `/pages/comment/comment?orderId=${orderId}`
+    });
+};
 </script>
 
 <template>
@@ -133,7 +139,7 @@ const naviToOrderDetail = (orderId) => {
 
                 <view class="button-container">
                     <button @click="naviToOrderDetail(item.id)" class="detail-button">查看详情</button>
-                    <button class="comment-button" v-if="item.status == 6">去评价</button>
+                    <button @click="naviToComment(item.id)" class="comment-button" v-if="item.status == 6">去评价</button>
                 </view>
             </view>
 

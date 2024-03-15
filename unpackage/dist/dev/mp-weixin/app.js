@@ -23,6 +23,7 @@ if (!Math) {
   "./pages/orderSuccess/orderSuccess.js";
   "./pages/orderDetail/orderDetail.js";
   "./pages/orderList/orderList.js";
+  "./pages/comment/comment.js";
 }
 const _sfc_main = {};
 function _sfc_render(_ctx, _cache) {

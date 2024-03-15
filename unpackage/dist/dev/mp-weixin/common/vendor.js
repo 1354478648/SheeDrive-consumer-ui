@@ -8049,6 +8049,14 @@ const pages = [
       navigationBarTextStyle: "black",
       navigationBarTitleText: "我的订单"
     }
+  },
+  {
+    path: "pages/comment/comment",
+    style: {
+      navigationBarBackgroundColor: "#fff",
+      navigationBarTextStyle: "black",
+      navigationBarTitleText: "添加评价"
+    }
   }
 ];
 const globalStyle = {

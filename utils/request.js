@@ -6,8 +6,8 @@ import {
 } from "@/stores/modules/token.js"
 
 // 请求基地址
-// const baseURL = 'http://192.168.172.243:8000' // 真机调试IP地址
-const baseURL = 'http://localhost:8000'
+const baseURL = 'http://192.168.35.243:8000' // 真机调试IP地址
+// const baseURL = 'http://localhost:8000'
 
 // 拦截器配置
 const httpInterceptor = {
@@ -47,10 +47,11 @@ export const http = (options) => {
 				// 判断业务状态码
 				if (result.data.code === 0) {
 					resolve(result.data)
-				} else if (result.statusCode === 403) {
+				} else if (result.data.code === 403) {
 					// 403错误
 					const infoStore = useInfoStore()
-					infoStore.clearInfo()
+					infoStore.removeInfo()
+					console.log("403错误")
 					reject(result.data.message)
 				} else {
 					// 其他错误 -> 根据后端错误信息轻提示

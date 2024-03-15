@@ -2,19 +2,30 @@
 import { ref } from 'vue';
 import { onLoad } from '@dcloudio/uni-app';
 import { orderGetByIdService } from '@/api/order.js';
+import { commentGetByOrderIdService } from '@/api/comment.js';
 import { formatPrice } from '@/utils/common.js';
 
 const orderId = ref('');
-onLoad((options) => {
+onLoad(async (options) => {
     orderId.value = options.orderId;
-    orderGetById();
+    await orderGetById();
+    commentGetByOrderId();
 });
 
 const orderInfo = ref({});
 const orderGetById = async () => {
     let result = await orderGetByIdService(orderId.value);
     orderInfo.value = result.data.orderInfo;
-    console.log(orderInfo.value);
+};
+
+const commentInfo = ref({});
+const commentGetByOrderId = async () => {
+    if (orderInfo.value.status != 7) {
+        return;
+    }
+    let result = await commentGetByOrderIdService(orderId.value);
+    commentInfo.value = result.data.commentInfo;
+    console.log(commentInfo.value);
 };
 
 // 汽车分类映射关系
@@ -179,7 +190,35 @@ const statusList = ref([
                 <uni-icons type="closeempty" size="24" class="icon"></uni-icons>
                 <view class="status">订单取消</view>
             </view>
-            <uni-steps v-else direction="column" :options="statusList" :active="orderInfo.status - 1" active-color="#47dfff" s />
+            <uni-steps v-else direction="column" :options="statusList" :active="orderInfo.status - 1" active-color="#47dfff" />
+        </uni-card>
+        <view class="dealer-title">
+            <text class="dealer-text">| 订单评价</text>
+        </view>
+        <uni-card :isFull="true" class="form-container">
+            <form v-if="orderInfo.status == 7">
+                <!-- 表单内容 -->
+                <view class="form-item">
+                    <text class="label">总评分</text>
+                    <uni-rate v-model="commentInfo.totalScore" disabledColor="#ffca3e" :is-fill="false" class="input" :disabled="true" />
+                </view>
+                <view class="form-item">
+                    <text class="label">经销商评分</text>
+                    <uni-rate v-model="commentInfo.dealerScore" disabledColor="#ffca3e" :is-fill="false" class="input" :disabled="true" />
+                </view>
+                <view class="form-item">
+                    <text class="label">车辆评分</text>
+                    <uni-rate v-model="commentInfo.carScore" disabledColor="#ffca3e" :is-fill="false" class="input" :disabled="true" />
+                </view>
+                <view class="form-item">
+                    <text class="label">评价内容</text>
+					<input :value="commentInfo.content"  type="text" class="input" disabled="true" />
+                </view>
+            </form>
+            <view v-else class="steps-container">
+                <uni-icons type="closeempty" size="24" class="icon"></uni-icons>
+                <view class="status">暂无评价</view>
+            </view>
         </uni-card>
         <view class="bottom">
             <text class="buttom-text">———— 已经到底了 ————</text>

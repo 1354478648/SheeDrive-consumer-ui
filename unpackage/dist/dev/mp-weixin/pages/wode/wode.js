@@ -75,6 +75,11 @@ const _sfc_main = {
         url: `/pages/orderDetail/orderDetail?orderId=${orderId}`
       });
     };
+    const naviToComment = (orderId) => {
+      common_vendor.index.navigateTo({
+        url: `/pages/comment/comment?orderId=${orderId}`
+      });
+    };
     return (_ctx, _cache) => {
       var _a;
       return common_vendor.e({
@@ -113,8 +118,10 @@ const _sfc_main = {
           }, {
             l: common_vendor.o(($event) => naviToOrderDetail(item.id), item.id),
             m: item.status == 6
-          }, item.status == 6 ? {} : {}, {
-            n: item.id
+          }, item.status == 6 ? {
+            n: common_vendor.o(($event) => naviToComment(item.id), item.id)
+          } : {}, {
+            o: item.id
           });
         }),
         g: !havaOrderData.value

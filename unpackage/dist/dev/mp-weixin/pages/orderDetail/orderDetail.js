@@ -1,6 +1,7 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
 const api_order = require("../../api/order.js");
+const api_comment = require("../../api/comment.js");
 require("../../utils/request.js");
 require("../../stores/modules/info.js");
 require("../../stores/modules/token.js");
@@ -8,27 +9,38 @@ if (!Array) {
   const _easycom_uni_card2 = common_vendor.resolveComponent("uni-card");
   const _easycom_uni_icons2 = common_vendor.resolveComponent("uni-icons");
   const _easycom_uni_steps2 = common_vendor.resolveComponent("uni-steps");
-  (_easycom_uni_card2 + _easycom_uni_icons2 + _easycom_uni_steps2)();
+  const _easycom_uni_rate2 = common_vendor.resolveComponent("uni-rate");
+  (_easycom_uni_card2 + _easycom_uni_icons2 + _easycom_uni_steps2 + _easycom_uni_rate2)();
 }
 const _easycom_uni_card = () => "../../uni_modules/uni-card/components/uni-card/uni-card.js";
 const _easycom_uni_icons = () => "../../uni_modules/uni-icons/components/uni-icons/uni-icons.js";
 const _easycom_uni_steps = () => "../../uni_modules/uni-steps/components/uni-steps/uni-steps.js";
+const _easycom_uni_rate = () => "../../uni_modules/uni-rate/components/uni-rate/uni-rate.js";
 if (!Math) {
-  (_easycom_uni_card + _easycom_uni_icons + _easycom_uni_steps)();
+  (_easycom_uni_card + _easycom_uni_icons + _easycom_uni_steps + _easycom_uni_rate)();
 }
 const _sfc_main = {
   __name: "orderDetail",
   setup(__props) {
     const orderId = common_vendor.ref("");
-    common_vendor.onLoad((options) => {
+    common_vendor.onLoad(async (options) => {
       orderId.value = options.orderId;
-      orderGetById();
+      await orderGetById();
+      commentGetByOrderId();
     });
     const orderInfo = common_vendor.ref({});
     const orderGetById = async () => {
       let result = await api_order.orderGetByIdService(orderId.value);
       orderInfo.value = result.data.orderInfo;
-      console.log(orderInfo.value);
+    };
+    const commentInfo = common_vendor.ref({});
+    const commentGetByOrderId = async () => {
+      if (orderInfo.value.status != 7) {
+        return;
+      }
+      let result = await api_comment.commentGetByOrderIdService(orderId.value);
+      commentInfo.value = result.data.commentInfo;
+      console.log(commentInfo.value);
     };
     const categoryMap = {
       0: "其他",
@@ -122,11 +134,43 @@ const _sfc_main = {
           direction: "column",
           options: statusList.value,
           active: orderInfo.value.status - 1,
-          ["active-color"]: "#47dfff",
-          s: true
+          ["active-color"]: "#47dfff"
         })
       }, {
         t: common_vendor.p({
+          isFull: true
+        }),
+        v: orderInfo.value.status == 7
+      }, orderInfo.value.status == 7 ? {
+        w: common_vendor.o(($event) => commentInfo.value.totalScore = $event),
+        x: common_vendor.p({
+          disabledColor: "#ffca3e",
+          ["is-fill"]: false,
+          disabled: true,
+          modelValue: commentInfo.value.totalScore
+        }),
+        y: common_vendor.o(($event) => commentInfo.value.dealerScore = $event),
+        z: common_vendor.p({
+          disabledColor: "#ffca3e",
+          ["is-fill"]: false,
+          disabled: true,
+          modelValue: commentInfo.value.dealerScore
+        }),
+        A: common_vendor.o(($event) => commentInfo.value.carScore = $event),
+        B: common_vendor.p({
+          disabledColor: "#ffca3e",
+          ["is-fill"]: false,
+          disabled: true,
+          modelValue: commentInfo.value.carScore
+        }),
+        C: commentInfo.value.content
+      } : {
+        D: common_vendor.p({
+          type: "closeempty",
+          size: "24"
+        })
+      }, {
+        E: common_vendor.p({
           isFull: true
         })
       });

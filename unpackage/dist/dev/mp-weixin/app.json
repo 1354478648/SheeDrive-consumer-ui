@@ -18,7 +18,8 @@
     "pages/order/order",
     "pages/orderSuccess/orderSuccess",
     "pages/orderDetail/orderDetail",
-    "pages/orderList/orderList"
+    "pages/orderList/orderList",
+    "pages/comment/comment"
   ],
   "window": {
     "navigationBarTextStyle": "white",
