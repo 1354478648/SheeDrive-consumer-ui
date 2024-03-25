@@ -1,6 +1,7 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
 const api_cardetail = require("../../api/cardetail.js");
+const api_order = require("../../api/order.js");
 const utils_common = require("../../utils/common.js");
 const api_stock = require("../../api/stock.js");
 require("../../utils/request.js");
@@ -32,6 +33,14 @@ const _sfc_main = {
     const stockGetList = async () => {
       let result = await api_stock.stockGetByCarIdService(id.value);
       dealerData.value = result.data.List;
+      for (let item of dealerData.value) {
+        let total = await orderGetTotal(item.dealerInfo.name);
+        item.total = total;
+      }
+    };
+    const orderGetTotal = async (dealerName) => {
+      let result = await api_order.orderGetListByDealerNameService(dealerName);
+      return result.data.Total;
     };
     const categoryMap = {
       0: "其他",
@@ -117,9 +126,10 @@ const _sfc_main = {
             d: common_vendor.t(item.dealerInfo.describeInfo),
             e: item.dealerInfo.avatar,
             f: common_vendor.t(item.dealerInfo.phone),
-            g: common_vendor.o(($event) => naviToOrder(item.dealerInfo.id), item.id),
-            h: item.id,
-            i: "35425daa-1-" + i0
+            g: common_vendor.t(item.total),
+            h: common_vendor.o(($event) => naviToOrder(item.dealerInfo.id), item.id),
+            i: item.id,
+            j: "35425daa-1-" + i0
           };
         }),
         l: common_vendor.p({

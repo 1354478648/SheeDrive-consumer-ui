@@ -40,8 +40,8 @@
   padding-top: 20rpx;
 }
 .navbar .logo .logo-image {
-  width: 200rpx;
-  height: 50rpx;
+  width: 220rpx;
+  height: 100rpx;
 }
 .navbar .logo .logo-text {
   flex: 1;

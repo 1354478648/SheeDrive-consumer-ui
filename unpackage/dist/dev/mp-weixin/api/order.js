@@ -25,7 +25,14 @@ const orderGetByIdService = (carId) => {
     url: `/order/detail?id=${carId}`
   });
 };
+const orderGetListByDealerNameService = (dealerName) => {
+  return utils_request.http({
+    method: "GET",
+    url: `/order/list?dealer_name=${dealerName}`
+  });
+};
 exports.orderAddService = orderAddService;
 exports.orderGetByIdService = orderGetByIdService;
 exports.orderGetByUserIdInWoDeService = orderGetByUserIdInWoDeService;
 exports.orderGetByUserIdService = orderGetByUserIdService;
+exports.orderGetListByDealerNameService = orderGetListByDealerNameService;

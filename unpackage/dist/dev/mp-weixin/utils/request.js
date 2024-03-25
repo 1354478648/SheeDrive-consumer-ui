@@ -2,7 +2,7 @@
 const common_vendor = require("../common/vendor.js");
 const stores_modules_info = require("../stores/modules/info.js");
 const stores_modules_token = require("../stores/modules/token.js");
-const baseURL = "http://192.168.35.243:8000";
+const baseURL = "http://localhost:8000";
 const httpInterceptor = {
   // 拦截前触发
   invoke(options) {

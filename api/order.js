@@ -34,3 +34,11 @@ export const orderGetByIdService = (carId) => {
 		url: `/order/detail?id=${carId}`,
 	})
 }
+
+// 订单列表查询(通过经销商名查找)
+export const orderGetListByDealerNameService = (dealerName) => {
+	return http({
+		method: 'GET',
+		url: `/order/list?dealer_name=${dealerName}`,
+	})
+}

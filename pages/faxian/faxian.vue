@@ -46,7 +46,7 @@ const naviToYuYue = () => {
                     <text v-for="(item, index) in swiperList" :key="item" class="dot" :class="{ active: index === activeIndex }"></text>
                 </view>
             </view>
-            <text class="title">小 羊 试 驾</text>
+            <text class="title">汽 车 试 驾 系 统</text>
             <text class="descide-info">{{ swiperList[activeIndex].describeInfo }}</text>
             <button class="book-btn" @click="naviToYuYue">预约试驾</button>
         </view>
@@ -101,7 +101,7 @@ const naviToYuYue = () => {
         top: 200rpx; /* 调整标题位置 */
         left: 50%;
         transform: translateX(-50%);
-        font-size: 64rpx;
+        font-size: 42rpx;
         color: #ffffff;
         text-align: center; /* 居中文字 */
         font-family: SimHei;

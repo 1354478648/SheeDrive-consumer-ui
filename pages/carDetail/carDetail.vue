@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 import { cardetailGetByIdService } from '@/api/cardetail.js';
+import { orderGetListByDealerNameService } from '@/api/order.js';
 import { onLoad } from '@dcloudio/uni-app';
 import { formatPrice, calculateDistance } from '@/utils/common.js';
 import { stockGetByCarIdService } from '@/api/stock.js';
@@ -22,6 +23,15 @@ const dealerData = ref([]);
 const stockGetList = async () => {
     let result = await stockGetByCarIdService(id.value);
     dealerData.value = result.data.List;
+    for (let item of dealerData.value) {
+        let total = await orderGetTotal(item.dealerInfo.name);
+        item.total = total;
+    }
+};
+
+const orderGetTotal = async (dealerName) => {
+    let result = await orderGetListByDealerNameService(dealerName);
+    return result.data.Total;
 };
 
 // 汽车分类映射关系
@@ -148,7 +158,7 @@ const naviToOrder = (dealerId) => {
                     <image class="avatar" :src="item.dealerInfo.avatar"></image>
                     <view class="detail">
                         <text class="dealer-phone">{{ item.dealerInfo.phone }}</text>
-                        <text class="dealer-order">已服务 666 人</text>
+                        <text class="dealer-order">已服务 {{ item.total }} 人</text>
                     </view>
                     <view class="button-box">
                         <button @click="naviToOrder(item.dealerInfo.id)" class="button">立即预约</button>

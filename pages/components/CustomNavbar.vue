@@ -7,7 +7,7 @@ const { safeAreaInsets } = uni.getSystemInfoSync()
 	<view class="navbar" :style="{ paddingTop: safeAreaInsets?.top + 'px' }">
 		<!-- logo文字 -->
 		<view class="logo">
-			<image class="logo-image" src="@/static/SheeDrive_title.png"></image>
+			<image class="logo-image" src="@/static/new-SheeDrive_title.png"></image>
 			<text class="logo-text">驾驭未来，畅享自由！</text>
 		</view>
 		<!-- 搜索条 -->
@@ -36,8 +36,8 @@ const { safeAreaInsets } = uni.getSystemInfoSync()
 			padding-top: 20rpx;
 
 			.logo-image {
-				width: 200rpx;
-				height: 50rpx;
+				width: 220rpx;
+				height: 100rpx;
 			}
 
 			.logo-text {

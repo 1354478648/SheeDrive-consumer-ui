@@ -72,7 +72,7 @@
   /* 调整标题位置 */
   left: 50%;
   transform: translateX(-50%);
-  font-size: 64rpx;
+  font-size: 42rpx;
   color: #ffffff;
   text-align: center;
   /* 居中文字 */
