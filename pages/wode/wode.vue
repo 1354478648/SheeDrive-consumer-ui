@@ -13,14 +13,16 @@ const havaOrderData = ref(false);
 
 const orderList = ref([]);
 const orderGetByIdInWoDe = async () => {
-    if (infoStore.info && infoStore.info.hasOwnProperty('id')) {
+    if (infoStore.info != null) {
         let result = await orderGetByUserIdInWoDeService(infoStore.info.id);
         orderList.value = result.data.List;
         havaOrderData.value = true;
+    } else {
+        havaOrderData.value = false;
     }
 };
-onShow(() => {
-    orderGetByIdInWoDe();
+onShow(async() => {
+    await orderGetByIdInWoDe();
 });
 
 const statusOptions = [

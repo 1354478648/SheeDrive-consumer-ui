@@ -23,14 +23,16 @@ const _sfc_main = {
     const havaOrderData = common_vendor.ref(false);
     const orderList = common_vendor.ref([]);
     const orderGetByIdInWoDe = async () => {
-      if (infoStore.info && infoStore.info.hasOwnProperty("id")) {
+      if (infoStore.info != null) {
         let result = await api_order.orderGetByUserIdInWoDeService(infoStore.info.id);
         orderList.value = result.data.List;
         havaOrderData.value = true;
+      } else {
+        havaOrderData.value = false;
       }
     };
-    common_vendor.onShow(() => {
-      orderGetByIdInWoDe();
+    common_vendor.onShow(async () => {
+      await orderGetByIdInWoDe();
     });
     const statusOptions = [
       { value: -1, label: "异常" },
